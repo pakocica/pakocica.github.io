@@ -638,7 +638,12 @@ body.page-contact main > .section {
   border-bottom: none;
   border-radius: 0 10px 10px 0;
   padding: 1.5rem 1.75rem 1.6rem;
-  margin: 0.75rem 0 0.6rem;
+  /* The panel grows outward by exactly twice (padding-left + border) and keeps
+     the auto side margins, so its CONTENT box re-centres on the same column as
+     every other .section-inner: heading at the page's heading x, list at the
+     page's list x. Keep `auto` here — a plain `0` kills the centring. */
+  max-width: calc(var(--max-width) + 3.5rem + 10px);
+  margin: 0.75rem auto 0.6rem;
 }
 .next-class .eyebrow {
   display: block;
@@ -660,19 +665,48 @@ body.page-contact main > .section {
 .next-class .teaching-list {
   margin-bottom: 1.1em;
 }
+/* The hand-off from "do this now" to standing information. Left on the text
+   column like every heading, with a hairline running out to the right — a
+   centred label floats free on a page that is otherwise all left-aligned. */
 .reference-divider {
-  text-align: center;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
   font-family: var(--font);
   font-size: 0.72em;
   font-weight: 700;
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-light);
-  opacity: 0.6;
-  padding: 2.1rem 1rem 0.5rem;
+  padding: 2rem 0 0.1rem;
+}
+.reference-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(0,0,0,0.14);
+}
+/* Below ~1092px the section-inner stops centring and sits flush at the section
+   padding, so the "grow outward" trick has nothing to grow into. From here the
+   panel pulls itself outward with negative margins instead, by exactly its own
+   padding + border, which lands the content back on the page column. */
+@media (max-width: 1092px) {
+  .next-class .section-inner {
+    max-width: none;
+    margin-left: calc(-1.75rem - 5px);
+    margin-right: -1.75rem;
+  }
 }
 @media (max-width: 479px) {
-  .next-class .section-inner { padding: 1.2rem 1.1rem 1.3rem; }
+  /* Section padding is only 1rem here, so the panel goes edge to edge. */
+  .next-class .section-inner {
+    padding: 1.2rem 1rem 1.3rem 1rem;
+    margin-left: calc(-1rem - 5px);
+    margin-right: -1rem;
+    border-radius: 0;
+  }
 }
 
 /* Course highlights */
