@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
 Disallow: /teaching/intro-economics/files/
+Disallow: /teaching/intro-economics/reader/
 
 Sitemap: https://pkocourek.com/sitemap.xml
