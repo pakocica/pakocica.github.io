@@ -1,0 +1,387 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Chapter 20 (extract): The Circular Flow of Income</title>
+<style>
+:root{color-scheme:light dark;--bg:#FCFCFB;--wash:#F9F9F7;--ink:#2E2C27;--soft:#6B6A63;--grey:#B4B3A8;--hair:#E4E3DC;--clay:#C6613F;--ok:#5A8A5E}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#171613;--wash:#1D1B18;--ink:#E9E7E1;--soft:#A6A49C;--grey:#6E6C64;--hair:#312F2A;--clay:#D0714E;--ok:#7CA57F}}
+:root[data-theme=dark]{--bg:#171613;--wash:#1D1B18;--ink:#E9E7E1;--soft:#A6A49C;--grey:#6E6C64;--hair:#312F2A;--clay:#D0714E;--ok:#7CA57F}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-size:17px;line-height:1.65;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-text-size-adjust:100%}
+.inner{max-width:700px;margin:0 auto;padding:38px 22px 120px}
+h1{font-family:Georgia,'Times New Roman',serif;font-weight:600;font-size:32px;line-height:1.16;letter-spacing:-.01em;margin:0 0 8px}
+h2{font-size:22px;font-weight:600;margin:34px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--hair)}
+h3{font-size:18px;font-weight:650;margin:24px 0 6px;letter-spacing:.01em}
+p{margin:0 0 14px}
+.src{color:var(--soft);font-size:14px;margin:0 0 4px;line-height:1.5}
+.meta{color:var(--grey);font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;margin:0 0 22px}
+
+/* ---- table of contents ---- */
+.toc{border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:12px 0 12px;margin:0 0 30px}
+.toc-h{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);margin:0 0 7px}
+.toc ol{margin:0;padding:0;list-style:none;columns:2;column-gap:26px}
+.toc li{font-size:14px;line-height:1.45;margin:0 0 5px;break-inside:avoid}
+.toc a{color:var(--soft);text-decoration:none;border-bottom:1px solid transparent}
+@media(hover:hover){.toc a:hover{color:var(--clay);border-bottom-color:var(--clay)}}
+@media(max-width:560px){.toc ol{columns:1}}
+
+/* ---- blocks ---- */
+.blk{position:relative;border-radius:5px;padding:2px 8px 2px 12px;margin-left:-12px;scroll-margin:120px 0}
+li.blk{margin-left:0;padding-left:6px}
+.blk::after{content:"";display:block;clear:both}
+.reading{background:var(--wash);box-shadow:inset 3px 0 0 var(--clay)}
+h2.blk{border-bottom:1px solid var(--hair)}
+.pg{text-align:right;font-size:11.5px;letter-spacing:.06em;color:var(--grey);margin:18px 0 2px;font-variant-numeric:tabular-nums}
+.pg span{border-top:1px solid var(--hair);padding-top:3px;display:inline-block;min-width:52px}
+
+/* ---- speaker button ---- */
+.spk{float:left;margin:4px 12px 2px 0;width:32px;height:32px;border-radius:50%;border:1px solid var(--hair);background:transparent;color:var(--grey);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;-webkit-tap-highlight-color:transparent;flex:none}
+@media(hover:hover){.spk:hover{color:var(--clay);border-color:var(--clay)}}
+.spk.on{color:var(--clay);border-color:var(--clay)}
+.spk.on svg .w1,.spk.on svg .w2{animation:sw 1s ease-in-out infinite alternate}.spk.on svg .w2{animation-delay:.25s}
+@keyframes sw{from{opacity:.25}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.spk.on svg .w1,.spk.on svg .w2{animation:none}}
+.spk.sm{width:24px;height:24px;margin:3px 9px 1px 0}
+.spk.sm svg{width:13px;height:13px}
+.spk:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+
+/* ---- special blocks ---- */
+ul.lst,ol.lst{margin:0 0 16px;padding-left:26px}
+ul.lst li,ol.lst li{margin:0 0 7px}
+.keyterm{border-left:3px solid var(--ok);background:var(--wash);padding:9px 12px 9px 13px;margin:0 0 16px;font-size:15.5px;line-height:1.6;border-radius:0 5px 5px 0}
+.keyterm.reading{box-shadow:inset 3px 0 0 var(--clay);border-left-color:var(--clay)}
+blockquote.blk{margin:0 0 16px;padding:4px 8px 4px 16px;border-left:3px solid var(--hair);color:var(--soft);font-style:italic}
+figure.blk{margin:22px 0;padding:0 0 0 12px}
+figure.blk img{display:block;max-width:100%;height:auto;border:1px solid var(--hair);border-radius:6px;background:var(--wash)}
+figcaption{font-size:14px;color:var(--soft);line-height:1.55;margin-top:9px}
+.box{border:1px solid var(--hair);border-radius:10px;padding:14px 18px 4px;background:var(--wash);margin:26px 0}
+.box-k{font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--clay);font-weight:600;margin:0 0 2px}
+.box-t{font-size:17px;font-weight:650;margin:0 0 10px;line-height:1.35}
+.box .blk{margin-left:-8px;padding-left:8px}
+.box .reading{background:var(--bg)}
+.box h2.blk,.box h3.blk{margin-top:14px;border-bottom:none}
+.plainbox{margin:34px 0 0}
+.bimg{display:block;clear:both;max-width:100%;height:auto;margin:12px 0 6px}
+.lit{background:rgba(198,97,63,.15);border-radius:3px}
+:root[data-theme=dark] .lit,:root:not([data-theme=light]) .lit{background:rgba(208,113,78,.22)}
+@media (prefers-color-scheme:light){:root:not([data-theme=dark]) .lit{background:rgba(198,97,63,.15)}}
+
+/* ---- resume pill ---- */
+.resume{position:fixed;left:50%;transform:translateX(-50%);top:14px;z-index:40;background:var(--wash);border:1px solid var(--hair);border-radius:999px;padding:7px 15px;font-size:13.5px;color:var(--ink);cursor:pointer;box-shadow:0 3px 14px rgba(0,0,0,.09);display:flex;align-items:center;gap:8px}
+@media(hover:hover){.resume:hover{border-color:var(--clay);color:var(--clay)}}
+.resume b{font-weight:600}
+.resume .x{color:var(--grey);font-size:16px;line-height:1;padding:0 0 0 4px}
+
+/* ---- transport bar ---- */
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--wash);border-top:1px solid var(--hair);z-index:50;backdrop-filter:saturate(1.4) blur(6px)}
+.barin{max-width:700px;margin:0 auto;padding:0 18px 9px}
+.prog{height:16px;margin:0 -18px;padding:6px 18px 0;cursor:pointer;position:relative}
+.progtrack{height:3px;background:var(--hair);border-radius:2px;overflow:hidden}
+.progfill{height:100%;width:0;background:var(--clay);border-radius:2px}
+.ctl{display:flex;align-items:center;gap:9px;padding-top:7px;flex-wrap:wrap}
+.tb{width:32px;height:32px;border-radius:50%;border:1px solid var(--hair);background:transparent;color:var(--soft);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0;flex:none;-webkit-tap-highlight-color:transparent}
+@media(hover:hover){.tb:hover{color:var(--clay);border-color:var(--clay)}}
+.tb:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
+.tb.big{width:38px;height:38px;color:var(--ink)}
+.pos{font-size:12.5px;color:var(--soft);font-variant-numeric:tabular-nums;letter-spacing:.01em;white-space:nowrap;margin-left:4px}
+.sp{flex:1 1 auto}
+.cont{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--soft);cursor:pointer;user-select:none;white-space:nowrap}
+.cont input{accent-color:var(--clay);width:14px;height:14px;margin:0;cursor:pointer}
+select#rate{font:inherit;font-size:12.5px;color:var(--soft);background:transparent;border:1px solid var(--hair);border-radius:6px;padding:3px 5px;cursor:pointer}
+@media(hover:hover){select#rate:hover{border-color:var(--clay);color:var(--clay)}}
+@media(max-width:520px){.pos{font-size:11.5px}.barin{padding:0 12px 8px}.ctl{gap:7px}}
+</style>
+
+<div class="inner">
+<header>
+<h1 class="blk" data-id="b001"><button class="spk sm" data-for="b001" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>Chapter 20 (extract): The Circular Flow of Income</h1>
+<p class="src">Mankiw &amp; Taylor, Economics, 5th ed. (Cengage, 2020), pp. 437–438</p>
+<p class="meta">19 blocks &middot; <span>6:06</span> of audio &middot; listen while you read · Introduction to Economics, UB · for enrolled students</p>
+<nav class="toc"><div class="toc-h">Contents</div><ol><li><a href="#s-b002">The Circular Flow of Income</a></li><li><a href="#s-b010">The Measurement of Gross Domestic Product</a></li></ol></nav>
+</header>
+<article id="doc">
+<h2 class="blk" id="s-b002" data-id="b002"><button class="spk sm" data-for="b002" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>The Circular Flow of Income</h2>
+<p class="blk" data-id="b003"><button class="spk" data-for="b003" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>The equality of income and expenditure can be seen through the circular flow diagram in Figure 20.1. This is a model which describes all the transactions between households and firms in a simple economy. In this economy, the market for goods and services is where households and firms interact through firms providing goods and services which are bought by households. The spending by households on these goods and services represents the revenue of firms. The two also interact in the market for factors of production. Firms use the money they receive from the sale of goods and services to purchase the factors of production (land, labour, capital and enterprise) from households who provide these factor services. The factor incomes received by households (wages, rent, interest and profit) are used to pay for goods and services. In this economy, money flows from households to firms and then back to households.</p>
+<p class="blk" data-id="b004"><button class="spk" data-for="b004" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>Not all of the incomes households receive are spent in the market for goods and services. Some of this income is subject to tax which is paid to the government. Some income will be saved, and the funds find their way into financial institutions in the form of pension saving, insurance and assurance, and saving in bank accounts. Some of the income spent on goods and services by households leaves the economy in the form of spending on imports. Similarly, some of the income (<em>Y</em>) received by firms is paid to the government in business taxes. Taxes (<em>T</em>), saving (<em>S</em>) and spending on imports (<em>M</em>) are referred to as <em>leakages</em> from the circular flow.</p>
+<figure class="blk" data-id="b005">
+<img src="figures/fig20-1.png" alt="Figure 20.1 · The Circular Flow Diagram Households buy goods and services from firms, and firms use the revenue from sales to pay wages to workers, rent to landowners, interest on " loading="lazy">
+<figcaption><button class="spk sm" data-for="b005" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button><strong>Figure 20.1 · The Circular Flow Diagram</strong> <em>Households buy goods and services from firms, and firms use the revenue from sales to pay wages to workers, rent to landowners, interest on capital and profit to owners of firms. GDP equals the total amount spent by households in the market for goods and services. It also equals the total wages, rent, interest and profit paid by firms in the markets for the factors of production. Leakages to the circular flow include taxes, savings and spending on imports whereas injections to the circular flow include government spending, investment and revenue generated from exports.</em></figcaption>
+</figure>
+<div class="pg"><span>p. 438</span></div>
+<p class="blk" data-id="b006"><button class="spk" data-for="b006" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>Governments use tax revenue and borrowing from financial institutions to spend on government services and investment on infrastructure, education, health, defence and so on, representing government spending (<em>G</em>) which goes back into the circular flow. Firms make use of the funds provided by savers in financial institutions through borrowing to finance investment spending on new plant, equipment and expansion. This investment ()<em>I</em> finds its way back into the market for goods and services. Firms will also sell some of the goods and services they produce abroad, and so the revenue from exports (<em>X</em>) flows back into the system. Financial institutions also lend money overseas and firms overseas invest money into the country which is recorded as net capital outflow (<em>NCO</em>). Government spending (<em>G</em>), investment spending ()<em>I</em> and revenue from exports (<em>X</em>) are referred to as <em>injections</em> to the circular flow.</p>
+<p class="blk" data-id="b007"><button class="spk" data-for="b007" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>In theory, measuring GDP through income or expenditure will arrive at the same result. National income (<em>NY</em>), national expenditure and GDP are invariably used synonymously. A common measure of showing GDP is to add up the sum of expenditures in the economy – consumer spending (<em>C</em>), investment spending ()<em>I</em>, government spending (<em>G</em>) and the difference between the amount paid out on imports (<em>M</em>) and that received in exports (<em>X</em>) (net exports: (<em>X</em>−<em>M</em>) or <em>NX</em>). This provides a measure of GDP given by the following equation:</p>
+<p class="blk" data-id="b008"><button class="spk" data-for="b008" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button><em>GDP (NY) = C + I + G + NX</em><img class="bimg" src="figures/eq20-01.png" alt="GDP (NY) = C + I + G + NX" loading="lazy"></p>
+<div class="box" data-box="box1">
+<div class="box-k">SELF TEST</div>
+<p class="blk" data-id="b009"><button class="spk" data-for="b009" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>What two things are measured by GDP? How can it measure two things at once?</p>
+</div>
+<h2 class="blk" id="s-b010" data-id="b010"><button class="spk sm" data-for="b010" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>The Measurement of Gross Domestic Product</h2>
+<p class="blk" data-id="b011"><button class="spk" data-for="b011" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button><strong>Gross domestic product (GDP)</strong> is the market value of all final goods and services produced within a country in a given period of time.</p>
+<div class="keyterm blk" data-id="b012"><button class="spk sm" data-for="b012" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button><strong>gross domestic product (GDP)</strong>: the market value of all final goods and services produced within a country in a given period of time</div>
+<p class="blk" data-id="b013"><button class="spk" data-for="b013" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>Let’s consider each phrase in this definition.</p>
+<h3 class="blk" data-id="b014"><button class="spk sm" data-for="b014" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>‘GDP Is the Market Value …’</h3>
+<p class="blk" data-id="b015"><button class="spk" data-for="b015" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>GDP adds together many different kinds of products into a single measure of the value of economic activity. To do this, it uses market prices. Because market prices measure the amount people are willing to pay for different goods, they reflect the value of those goods. If the price of an apple is twice the price of an orange, then an apple contributes twice as much to GDP as does an orange.</p>
+<h3 class="blk" data-id="b016"><button class="spk sm" data-for="b016" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>‘… Of All …’</h3>
+<p class="blk" data-id="b017"><button class="spk" data-for="b017" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>GDP includes all items produced in the economy and sold in markets. GDP measures the market value of not just apples and oranges but also pears and grapefruit, books and films, haircuts, healthcare and so on.</p>
+<p class="blk" data-id="b018"><button class="spk" data-for="b018" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button>GDP also includes the market value of the housing services provided by the economy’s stock of housing. For rental housing, this value is easy to calculate – the rent equals both the tenant’s expenditure and the landlord’s income. Yet many people own the place where they live and, therefore, do not pay rent. The government includes this owner occupied housing in GDP by estimating its rental value. That is, GDP is based on the assumption that the owner, in effect, pays rent to themselves, so the rent is included both in their expenditure and income.</p>
+<p class="blk" data-id="b019"><button class="spk" data-for="b019" type="button" aria-label="Listen to this passage"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"/><path class="w1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 9.5a4 4 0 0 1 0 5"/><path class="w2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 7.5a7.5 7.5 0 0 1 0 9"/></svg></button><em>[End of the assigned extract, p. 438. The chapter continues with the measurement of GDP.]</em></p>
+</article>
+</div>
+
+<button class="resume" id="resume" hidden></button>
+
+<div class="bar">
+ <div class="barin">
+  <div class="prog" id="prog" role="slider" aria-label="Chapter progress" tabindex="-1"><div class="progtrack"><div class="progfill" id="progfill"></div></div></div>
+  <div class="ctl">
+   <button class="tb" id="prev" title="Previous block (←)" aria-label="Previous block"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M7 5h2v14H7zM20 5v14L10 12z"/></svg></button>
+   <button class="tb big" id="play" title="Play / pause (Space)" aria-label="Play"><svg id="picon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button>
+   <button class="tb" id="next" title="Next block (→)" aria-label="Next block"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M15 5h2v14h-2zM4 5v14l10-7z"/></svg></button>
+   <span class="pos" id="pos">&nbsp;</span>
+   <span class="sp"></span>
+   <label class="cont" title="Keep playing to the end of the chapter (c)"><input type="checkbox" id="cont"> Continuous</label>
+   <select id="rate" title="Playback speed ([ / ])" aria-label="Playback speed">
+    <option value="0.75">0.75&times;</option><option value="1" selected>1&times;</option><option value="1.25">1.25&times;</option><option value="1.5">1.5&times;</option><option value="2">2&times;</option>
+   </select>
+   <button class="tb" id="theme" title="Light / dark" aria-label="Toggle light or dark theme"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
+  </div>
+ </div>
+</div>
+
+<audio id="au" preload="metadata"></audio>
+
+<script id="reader-data" type="application/json">{"key":"chapter-20-extract-the-circular-flow-of--adb063","title":"Chapter 20 (extract): The Circular Flow of Income","blocks":[{"id":"b001","file":"b001.mp3","dur":3.925,"words":[{"w":"Chapter","s":0.275,"e":0.575},{"w":"20","s":0.575,"e":1.0},{"w":"extract","s":1.075,"e":1.8},{"w":"The","s":1.925,"e":2.062},{"w":"Circular","s":2.062,"e":2.538},{"w":"Flow","s":2.538,"e":2.875},{"w":"of","s":2.875,"e":3.0},{"w":"Income","s":3.0,"e":3.7}]},{"id":"b002","file":"b002.mp3","dur":2.3,"words":[{"w":"The","s":0.275,"e":0.388},{"w":"Circular","s":0.388,"e":0.875},{"w":"Flow","s":0.875,"e":1.175},{"w":"of","s":1.175,"e":1.3},{"w":"Income","s":1.3,"e":2.05}]},{"id":"b003","file":"b003.mp3","dur":55.925,"words":[{"w":"The","s":0.25,"e":0.375},{"w":"equality","s":0.375,"e":0.9},{"w":"of","s":0.9,"e":1.038},{"w":"income","s":1.038,"e":1.5},{"w":"and","s":1.5,"e":1.613},{"w":"expenditure","s":1.613,"e":2.6},{"w":"can","s":2.6,"e":2.763},{"w":"be","s":2.763,"e":2.913},{"w":"seen","s":2.913,"e":3.225},{"w":"through","s":3.225,"e":3.362},{"w":"the","s":3.362,"e":3.487},{"w":"circular","s":3.487,"e":3.962},{"w":"flow","s":3.962,"e":4.225},{"w":"diagram","s":4.225,"e":5.05},{"w":"in","s":5.05,"e":5.237},{"w":"Figure","s":5.237,"e":5.562},{"w":"20.1","s":5.562,"e":6.9},{"w":"This","s":7.062,"e":7.3},{"w":"is","s":7.3,"e":7.425},{"w":"a","s":7.425,"e":7.525},{"w":"model","s":7.525,"e":7.925},{"w":"which","s":7.925,"e":8.125},{"w":"describes","s":8.125,"e":8.662},{"w":"all","s":8.662,"e":8.887},{"w":"the","s":8.887,"e":8.975},{"w":"transactions","s":8.975,"e":9.725},{"w":"between","s":9.725,"e":10.05},{"w":"households","s":10.05,"e":10.65},{"w":"and","s":10.65,"e":10.787},{"w":"firms","s":10.787,"e":11.387},{"w":"in","s":11.387,"e":11.488},{"w":"a","s":11.488,"e":11.588},{"w":"simple","s":11.588,"e":11.925},{"w":"economy","s":11.925,"e":12.95},{"w":"In","s":13.137,"e":13.262},{"w":"this","s":13.262,"e":13.45},{"w":"economy","s":13.45,"e":14.275},{"w":"the","s":14.375,"e":14.475},{"w":"market","s":14.475,"e":14.825},{"w":"for","s":14.825,"e":14.988},{"w":"goods","s":14.988,"e":15.3},{"w":"and","s":15.3,"e":15.425},{"w":"services","s":15.425,"e":16.288},{"w":"is","s":16.288,"e":16.413},{"w":"where","s":16.413,"e":16.575},{"w":"households","s":16.575,"e":17.163},{"w":"and","s":17.163,"e":17.288},{"w":"firms","s":17.288,"e":17.825},{"w":"interact","s":17.825,"e":18.3},{"w":"through","s":18.3,"e":18.512},{"w":"firms","s":18.512,"e":18.925},{"w":"providing","s":18.925,"e":19.45},{"w":"goods","s":19.45,"e":19.875},{"w":"and","s":19.875,"e":20.012},{"w":"services","s":20.012,"e":20.875},{"w":"which","s":20.875,"e":21.038},{"w":"are","s":21.038,"e":21.125},{"w":"bought","s":21.125,"e":21.375},{"w":"by","s":21.375,"e":21.55},{"w":"households","s":21.55,"e":22.625},{"w":"The","s":22.788,"e":22.9},{"w":"spending","s":22.9,"e":23.35},{"w":"by","s":23.35,"e":23.525},{"w":"households","s":23.525,"e":24.087},{"w":"on","s":24.087,"e":24.2},{"w":"these","s":24.2,"e":24.462},{"w":"goods","s":24.462,"e":24.85},{"w":"and","s":24.85,"e":24.975},{"w":"services","s":24.975,"e":25.85},{"w":"represents","s":25.85,"e":26.4},{"w":"the","s":26.4,"e":26.525},{"w":"revenue","s":26.525,"e":26.95},{"w":"of","s":26.95,"e":27.05},{"w":"firms","s":27.05,"e":27.775},{"w":"The","s":28.55,"e":28.662},{"w":"two","s":28.662,"e":28.938},{"w":"also","s":28.938,"e":29.325},{"w":"interact","s":29.325,"e":29.812},{"w":"in","s":29.812,"e":29.887},{"w":"the","s":29.887,"e":29.975},{"w":"market","s":29.975,"e":30.325},{"w":"for","s":30.325,"e":30.45},{"w":"factors","s":30.45,"e":30.887},{"w":"of","s":30.887,"e":30.975},{"w":"production","s":30.975,"e":31.975},{"w":"Firms","s":32.125,"e":32.525},{"w":"use","s":32.525,"e":32.737},{"w":"the","s":32.737,"e":32.825},{"w":"money","s":32.825,"e":33.125},{"w":"they","s":33.125,"e":33.275},{"w":"receive","s":33.275,"e":33.725},{"w":"from","s":33.725,"e":33.862},{"w":"the","s":33.862,"e":33.962},{"w":"sale","s":33.962,"e":34.288},{"w":"of","s":34.288,"e":34.413},{"w":"goods","s":34.413,"e":34.725},{"w":"and","s":34.725,"e":34.85},{"w":"services","s":34.85,"e":35.462},{"w":"to","s":35.462,"e":35.6},{"w":"purchase","s":35.6,"e":36.0},{"w":"the","s":36.0,"e":36.1},{"w":"factors","s":36.1,"e":36.537},{"w":"of","s":36.537,"e":36.625},{"w":"production","s":36.625,"e":37.55},{"w":"land","s":37.65,"e":38.125},{"w":"labour","s":38.237,"e":38.725},{"w":"capital","s":38.8,"e":39.275},{"w":"and","s":39.275,"e":39.4},{"w":"enterprise","s":39.4,"e":40.125},{"w":"from","s":40.2,"e":40.35},{"w":"households","s":40.35,"e":40.938},{"w":"who","s":40.938,"e":41.05},{"w":"provide","s":41.05,"e":41.45},{"w":"these","s":41.45,"e":41.675},{"w":"factor","s":41.675,"e":42.0},{"w":"services","s":42.0,"e":43.075},{"w":"The","s":43.225,"e":43.325},{"w":"factor","s":43.325,"e":43.75},{"w":"incomes","s":43.75,"e":44.2},{"w":"received","s":44.2,"e":44.65},{"w":"by","s":44.65,"e":44.825},{"w":"households","s":44.825,"e":45.662},{"w":"wages","s":45.75,"e":46.3},{"w":"rent","s":46.412,"e":46.875},{"w":"interest","s":46.975,"e":47.388},{"w":"and","s":47.388,"e":47.5},{"w":"profit","s":47.5,"e":48.225},{"w":"are","s":48.325,"e":48.45},{"w":"used","s":48.45,"e":48.688},{"w":"to","s":48.688,"e":48.775},{"w":"pay","s":48.775,"e":49.0},{"w":"for","s":49.0,"e":49.162},{"w":"goods","s":49.162,"e":49.575},{"w":"and","s":49.575,"e":49.7},{"w":"services","s":49.7,"e":50.775},{"w":"In","s":50.912,"e":51.05},{"w":"this","s":51.05,"e":51.25},{"w":"economy","s":51.25,"e":51.875},{"w":"money","s":51.962,"e":52.287},{"w":"flows","s":52.287,"e":52.65},{"w":"from","s":52.65,"e":52.8},{"w":"households","s":52.8,"e":53.425},{"w":"to","s":53.425,"e":53.562},{"w":"firms","s":53.562,"e":54.112},{"w":"and","s":54.112,"e":54.237},{"w":"then","s":54.237,"e":54.4},{"w":"back","s":54.4,"e":54.675},{"w":"to","s":54.675,"e":54.775},{"w":"households","s":54.775,"e":55.675}]},{"id":"b004","file":"b004.mp3","dur":40.15,"words":[{"w":"Not","s":0.3,"e":0.45},{"w":"all","s":0.45,"e":0.637},{"w":"of","s":0.637,"e":0.713},{"w":"the","s":0.713,"e":0.825},{"w":"incomes","s":0.825,"e":1.25},{"w":"households","s":1.25,"e":1.75},{"w":"receive","s":1.75,"e":2.413},{"w":"are","s":2.413,"e":2.525},{"w":"spent","s":2.525,"e":2.837},{"w":"in","s":2.837,"e":2.913},{"w":"the","s":2.913,"e":3.0},{"w":"market","s":3.0,"e":3.375},{"w":"for","s":3.375,"e":3.538},{"w":"goods","s":3.538,"e":3.95},{"w":"and","s":3.95,"e":4.075},{"w":"services","s":4.075,"e":5.125},{"w":"Some","s":5.263,"e":5.412},{"w":"of","s":5.412,"e":5.487},{"w":"this","s":5.487,"e":5.65},{"w":"income","s":5.65,"e":6.138},{"w":"is","s":6.138,"e":6.287},{"w":"subject","s":6.287,"e":6.725},{"w":"to","s":6.725,"e":6.85},{"w":"tax","s":6.85,"e":7.213},{"w":"which","s":7.213,"e":7.362},{"w":"is","s":7.362,"e":7.513},{"w":"paid","s":7.513,"e":7.825},{"w":"to","s":7.825,"e":7.912},{"w":"the","s":7.912,"e":8.0},{"w":"government","s":8.0,"e":8.95},{"w":"Some","s":9.1,"e":9.375},{"w":"income","s":9.375,"e":9.762},{"w":"will","s":9.762,"e":9.863},{"w":"be","s":9.863,"e":10.012},{"w":"saved","s":10.012,"e":10.725},{"w":"and","s":10.825,"e":10.938},{"w":"the","s":10.938,"e":11.037},{"w":"funds","s":11.037,"e":11.45},{"w":"find","s":11.45,"e":11.713},{"w":"their","s":11.713,"e":11.875},{"w":"way","s":11.875,"e":12.062},{"w":"into","s":12.062,"e":12.275},{"w":"financial","s":12.275,"e":12.738},{"w":"institutions","s":12.738,"e":13.525},{"w":"in","s":13.525,"e":13.613},{"w":"the","s":13.613,"e":13.713},{"w":"form","s":13.713,"e":13.963},{"w":"of","s":13.963,"e":14.05},{"w":"pension","s":14.05,"e":14.725},{"w":"saving","s":14.725,"e":15.475},{"w":"insurance","s":15.575,"e":16.2},{"w":"and","s":16.2,"e":16.312},{"w":"assurance","s":16.312,"e":17.125},{"w":"and","s":17.225,"e":17.363},{"w":"saving","s":17.363,"e":17.725},{"w":"in","s":17.725,"e":17.85},{"w":"bank","s":17.85,"e":18.075},{"w":"accounts","s":18.075,"e":19.025},{"w":"Some","s":19.2,"e":19.363},{"w":"of","s":19.363,"e":19.438},{"w":"the","s":19.438,"e":19.55},{"w":"income","s":19.55,"e":20.012},{"w":"spent","s":20.012,"e":20.337},{"w":"on","s":20.337,"e":20.538},{"w":"goods","s":20.538,"e":20.95},{"w":"and","s":20.95,"e":21.075},{"w":"services","s":21.075,"e":21.625},{"w":"by","s":21.625,"e":21.8},{"w":"households","s":21.8,"e":22.712},{"w":"leaves","s":22.712,"e":23.087},{"w":"the","s":23.087,"e":23.2},{"w":"economy","s":23.2,"e":23.863},{"w":"in","s":23.863,"e":23.962},{"w":"the","s":23.962,"e":24.062},{"w":"form","s":24.062,"e":24.337},{"w":"of","s":24.337,"e":24.425},{"w":"spending","s":24.425,"e":24.85},{"w":"on","s":24.85,"e":25.0},{"w":"imports","s":25.0,"e":25.825},{"w":"Similarly","s":26.625,"e":27.25},{"w":"some","s":27.325,"e":27.488},{"w":"of","s":27.488,"e":27.562},{"w":"the","s":27.562,"e":27.688},{"w":"income","s":27.688,"e":28.325},{"w":"Y","s":28.4,"e":28.7},{"w":"received","s":28.775,"e":29.225},{"w":"by","s":29.225,"e":29.438},{"w":"firms","s":29.438,"e":29.85},{"w":"is","s":29.85,"e":30.012},{"w":"paid","s":30.012,"e":30.35},{"w":"to","s":30.35,"e":30.438},{"w":"the","s":30.438,"e":30.525},{"w":"government","s":30.525,"e":31.0},{"w":"in","s":31.0,"e":31.125},{"w":"business","s":31.125,"e":31.5},{"w":"taxes","s":31.5,"e":32.5},{"w":"Taxes","s":32.663,"e":33.413},{"w":"T","s":33.5,"e":33.975},{"w":"saving","s":34.263,"e":34.7},{"w":"S","s":34.775,"e":35.125},{"w":"and","s":35.2,"e":35.325},{"w":"spending","s":35.325,"e":35.712},{"w":"on","s":35.712,"e":35.875},{"w":"imports","s":35.875,"e":36.375},{"w":"M","s":36.45,"e":36.9},{"w":"are","s":37.062,"e":37.225},{"w":"referred","s":37.225,"e":37.65},{"w":"to","s":37.65,"e":37.8},{"w":"as","s":37.8,"e":37.962},{"w":"leakages","s":37.962,"e":38.55},{"w":"from","s":38.55,"e":38.688},{"w":"the","s":38.688,"e":38.775},{"w":"circular","s":38.775,"e":39.237},{"w":"flow","s":39.237,"e":39.9}]},{"id":"b005","file":"b005.mp3","dur":41.075,"words":[{"w":"Figure","s":0.275,"e":0.55},{"w":"20.1","s":0.55,"e":1.75},{"w":"The","s":1.875,"e":2.0},{"w":"Circular","s":2.0,"e":2.462},{"w":"Flow","s":2.462,"e":2.725},{"w":"Diagram","s":2.725,"e":3.6},{"w":"Households","s":3.712,"e":4.275},{"w":"buy","s":4.275,"e":4.537},{"w":"goods","s":4.537,"e":4.95},{"w":"and","s":4.95,"e":5.088},{"w":"services","s":5.088,"e":5.65},{"w":"from","s":5.65,"e":5.862},{"w":"firms","s":5.862,"e":6.5},{"w":"and","s":6.6,"e":6.737},{"w":"firms","s":6.737,"e":7.1},{"w":"use","s":7.1,"e":7.325},{"w":"the","s":7.325,"e":7.425},{"w":"revenue","s":7.425,"e":7.85},{"w":"from","s":7.85,"e":8.062},{"w":"sales","s":8.062,"e":8.5},{"w":"to","s":8.5,"e":8.625},{"w":"pay","s":8.625,"e":8.875},{"w":"wages","s":8.875,"e":9.275},{"w":"to","s":9.275,"e":9.4},{"w":"workers","s":9.4,"e":10.1},{"w":"rent","s":10.213,"e":10.475},{"w":"to","s":10.475,"e":10.6},{"w":"landowners","s":10.6,"e":11.525},{"w":"interest","s":11.625,"e":11.988},{"w":"on","s":11.988,"e":12.175},{"w":"capital","s":12.175,"e":12.65},{"w":"and","s":12.65,"e":12.775},{"w":"profit","s":12.775,"e":13.25},{"w":"to","s":13.25,"e":13.412},{"w":"owners","s":13.412,"e":13.762},{"w":"of","s":13.762,"e":13.85},{"w":"firms","s":13.85,"e":14.75},{"w":"GDP","s":14.95,"e":15.625},{"w":"equals","s":15.625,"e":15.988},{"w":"the","s":15.988,"e":16.075},{"w":"total","s":16.075,"e":16.425},{"w":"amount","s":16.425,"e":16.863},{"w":"spent","s":16.863,"e":17.113},{"w":"by","s":17.113,"e":17.275},{"w":"households","s":17.275,"e":17.9},{"w":"in","s":17.9,"e":17.988},{"w":"the","s":17.988,"e":18.075},{"w":"market","s":18.075,"e":18.45},{"w":"for","s":18.45,"e":18.613},{"w":"goods","s":18.613,"e":19.025},{"w":"and","s":19.025,"e":19.15},{"w":"services","s":19.15,"e":20.2},{"w":"It","s":20.325,"e":20.475},{"w":"also","s":20.475,"e":20.85},{"w":"equals","s":20.85,"e":21.225},{"w":"the","s":21.225,"e":21.325},{"w":"total","s":21.325,"e":21.675},{"w":"wages","s":21.675,"e":22.35},{"w":"rent","s":22.462,"e":23.0},{"w":"interest","s":23.125,"e":23.65},{"w":"and","s":23.65,"e":23.775},{"w":"profit","s":23.775,"e":24.2},{"w":"paid","s":24.2,"e":24.525},{"w":"by","s":24.525,"e":24.738},{"w":"firms","s":24.738,"e":25.137},{"w":"in","s":25.137,"e":25.212},{"w":"the","s":25.212,"e":25.3},{"w":"markets","s":25.3,"e":25.775},{"w":"for","s":25.775,"e":25.887},{"w":"the","s":25.887,"e":25.975},{"w":"factors","s":25.975,"e":26.413},{"w":"of","s":26.413,"e":26.5},{"w":"production","s":26.5,"e":27.325},{"w":"Leakages","s":28.125,"e":28.65},{"w":"to","s":28.65,"e":28.738},{"w":"the","s":28.738,"e":28.863},{"w":"circular","s":28.863,"e":29.375},{"w":"flow","s":29.375,"e":29.738},{"w":"include","s":29.738,"e":30.162},{"w":"taxes","s":30.162,"e":31.075},{"w":"savings","s":31.225,"e":31.8},{"w":"and","s":31.8,"e":31.938},{"w":"spending","s":31.938,"e":32.45},{"w":"on","s":32.45,"e":32.625},{"w":"imports","s":32.625,"e":33.525},{"w":"whereas","s":33.525,"e":33.9},{"w":"injections","s":33.9,"e":34.575},{"w":"to","s":34.575,"e":34.663},{"w":"the","s":34.663,"e":34.788},{"w":"circular","s":34.788,"e":35.3},{"w":"flow","s":35.3,"e":35.875},{"w":"include","s":35.875,"e":36.312},{"w":"government","s":36.312,"e":36.775},{"w":"spending","s":36.775,"e":37.6},{"w":"investment","s":37.737,"e":38.438},{"w":"and","s":38.438,"e":38.575},{"w":"revenue","s":38.575,"e":39.175},{"w":"generated","s":39.175,"e":39.75},{"w":"from","s":39.75,"e":39.925},{"w":"exports","s":39.925,"e":40.825}]},{"id":"b006","file":"b006.mp3","dur":59.1,"words":[{"w":"Governments","s":0.3,"e":0.812},{"w":"use","s":0.812,"e":1.087},{"w":"tax","s":1.087,"e":1.488},{"w":"revenue","s":1.488,"e":1.925},{"w":"and","s":1.925,"e":2.05},{"w":"borrowing","s":2.05,"e":2.525},{"w":"from","s":2.525,"e":2.675},{"w":"financial","s":2.675,"e":3.138},{"w":"institutions","s":3.138,"e":3.987},{"w":"to","s":3.987,"e":4.125},{"w":"spend","s":4.125,"e":4.388},{"w":"on","s":4.388,"e":4.525},{"w":"government","s":4.525,"e":4.95},{"w":"services","s":4.95,"e":5.562},{"w":"and","s":5.562,"e":5.688},{"w":"investment","s":5.688,"e":6.213},{"w":"on","s":6.213,"e":6.375},{"w":"infrastructure","s":6.375,"e":7.425},{"w":"education","s":7.55,"e":8.425},{"w":"health","s":8.537,"e":8.95},{"w":"defence","s":9.025,"e":9.575},{"w":"and","s":9.575,"e":9.713},{"w":"so","s":9.713,"e":9.95},{"w":"on","s":9.95,"e":10.55},{"w":"representing","s":10.7,"e":11.3},{"w":"government","s":11.3,"e":11.725},{"w":"spending","s":11.725,"e":12.625},{"w":"G","s":12.75,"e":13.15},{"w":"which","s":13.3,"e":13.5},{"w":"goes","s":13.5,"e":13.775},{"w":"back","s":13.775,"e":14.037},{"w":"into","s":14.037,"e":14.213},{"w":"the","s":14.213,"e":14.3},{"w":"circular","s":14.3,"e":14.762},{"w":"flow","s":14.762,"e":15.625},{"w":"Firms","s":15.85,"e":16.275},{"w":"make","s":16.275,"e":16.5},{"w":"use","s":16.5,"e":16.712},{"w":"of","s":16.712,"e":16.788},{"w":"the","s":16.788,"e":16.887},{"w":"funds","s":16.887,"e":17.275},{"w":"provided","s":17.275,"e":17.75},{"w":"by","s":17.75,"e":17.938},{"w":"savers","s":17.938,"e":18.425},{"w":"in","s":18.425,"e":18.575},{"w":"financial","s":18.575,"e":19.038},{"w":"institutions","s":19.038,"e":20.1},{"w":"through","s":20.1,"e":20.337},{"w":"borrowing","s":20.337,"e":20.85},{"w":"to","s":20.85,"e":20.988},{"w":"finance","s":20.988,"e":21.488},{"w":"investment","s":21.488,"e":22.2},{"w":"spending","s":22.2,"e":22.613},{"w":"on","s":22.613,"e":22.775},{"w":"new","s":22.775,"e":22.962},{"w":"plant","s":22.962,"e":23.525},{"w":"equipment","s":23.625,"e":24.238},{"w":"and","s":24.238,"e":24.363},{"w":"expansion","s":24.363,"e":25.325},{"w":"This","s":26.1,"e":26.3},{"w":"investment","s":26.3,"e":27.337},{"w":"I","s":27.425,"e":27.55},{"w":"finds","s":27.55,"e":27.812},{"w":"its","s":27.812,"e":27.925},{"w":"way","s":27.925,"e":28.1},{"w":"back","s":28.1,"e":28.337},{"w":"into","s":28.337,"e":28.512},{"w":"the","s":28.512,"e":28.6},{"w":"market","s":28.6,"e":29.0},{"w":"for","s":29.0,"e":29.162},{"w":"goods","s":29.162,"e":29.575},{"w":"and","s":29.575,"e":29.712},{"w":"services","s":29.712,"e":30.8},{"w":"Firms","s":30.95,"e":31.35},{"w":"will","s":31.35,"e":31.5},{"w":"also","s":31.5,"e":31.887},{"w":"sell","s":31.887,"e":32.175},{"w":"some","s":32.175,"e":32.312},{"w":"of","s":32.312,"e":32.388},{"w":"the","s":32.388,"e":32.487},{"w":"goods","s":32.487,"e":32.9},{"w":"and","s":32.9,"e":33.038},{"w":"services","s":33.038,"e":33.65},{"w":"they","s":33.65,"e":33.8},{"w":"produce","s":33.8,"e":34.15},{"w":"abroad","s":34.15,"e":34.925},{"w":"and","s":35.025,"e":35.15},{"w":"so","s":35.15,"e":35.325},{"w":"the","s":35.325,"e":35.425},{"w":"revenue","s":35.425,"e":35.85},{"w":"from","s":35.85,"e":36.062},{"w":"exports","s":36.062,"e":36.837},{"w":"X","s":36.925,"e":37.45},{"w":"flows","s":37.625,"e":38.025},{"w":"back","s":38.025,"e":38.312},{"w":"into","s":38.312,"e":38.487},{"w":"the","s":38.487,"e":38.575},{"w":"system","s":38.575,"e":39.475},{"w":"Financial","s":39.638,"e":40.188},{"w":"institutions","s":40.188,"e":41.05},{"w":"also","s":41.05,"e":41.487},{"w":"lend","s":41.487,"e":41.837},{"w":"money","s":41.837,"e":42.125},{"w":"overseas","s":42.125,"e":42.888},{"w":"and","s":42.888,"e":43.037},{"w":"firms","s":43.037,"e":43.45},{"w":"overseas","s":43.45,"e":44.05},{"w":"invest","s":44.05,"e":44.525},{"w":"money","s":44.525,"e":44.8},{"w":"into","s":44.8,"e":44.987},{"w":"the","s":44.987,"e":45.075},{"w":"country","s":45.075,"e":45.75},{"w":"which","s":45.75,"e":45.95},{"w":"is","s":45.95,"e":46.1},{"w":"recorded","s":46.1,"e":46.638},{"w":"as","s":46.638,"e":46.837},{"w":"net","s":46.837,"e":47.087},{"w":"capital","s":47.087,"e":47.575},{"w":"outflow","s":47.575,"e":48.35},{"w":"NCO","s":48.425,"e":49.175},{"w":"Government","s":50.1,"e":50.55},{"w":"spending","s":50.55,"e":51.087},{"w":"G","s":51.2,"e":51.625},{"w":"investment","s":51.825,"e":52.4},{"w":"spending","s":52.4,"e":53.262},{"w":"I","s":53.4,"e":53.737},{"w":"and","s":53.737,"e":53.875},{"w":"revenue","s":53.875,"e":54.325},{"w":"from","s":54.325,"e":54.512},{"w":"exports","s":54.512,"e":55.05},{"w":"X","s":55.125,"e":55.725},{"w":"are","s":55.887,"e":56.025},{"w":"referred","s":56.025,"e":56.487},{"w":"to","s":56.487,"e":56.712},{"w":"as","s":56.712,"e":56.85},{"w":"injections","s":56.85,"e":57.55},{"w":"to","s":57.55,"e":57.637},{"w":"the","s":57.637,"e":57.75},{"w":"circular","s":57.75,"e":58.212},{"w":"flow","s":58.212,"e":58.85}]},{"id":"b007","file":"b007.mp3","dur":33.725,"words":[{"w":"In","s":0.3,"e":0.425},{"w":"theory","s":0.425,"e":0.825},{"w":"measuring","s":0.938,"e":1.375},{"w":"GDP","s":1.375,"e":1.9},{"w":"through","s":1.9,"e":2.138},{"w":"income","s":2.138,"e":2.625},{"w":"or","s":2.625,"e":2.75},{"w":"expenditure","s":2.75,"e":3.4},{"w":"will","s":3.4,"e":3.55},{"w":"arrive","s":3.55,"e":3.913},{"w":"at","s":3.913,"e":3.987},{"w":"the","s":3.987,"e":4.075},{"w":"same","s":4.075,"e":4.325},{"w":"result","s":4.325,"e":5.2},{"w":"National","s":5.362,"e":5.8},{"w":"income","s":5.8,"e":6.3},{"w":"NY","s":6.35,"e":6.875},{"w":"national","s":7.15,"e":7.55},{"w":"expenditure","s":7.55,"e":8.175},{"w":"and","s":8.175,"e":8.3},{"w":"GDP","s":8.3,"e":8.875},{"w":"are","s":8.875,"e":9.025},{"w":"invariably","s":9.025,"e":9.7},{"w":"used","s":9.7,"e":9.975},{"w":"synonymously","s":9.975,"e":11.15},{"w":"A","s":11.312,"e":11.425},{"w":"common","s":11.425,"e":11.775},{"w":"measure","s":11.775,"e":12.062},{"w":"of","s":12.062,"e":12.188},{"w":"showing","s":12.188,"e":12.525},{"w":"GDP","s":12.525,"e":13.075},{"w":"is","s":13.075,"e":13.2},{"w":"to","s":13.2,"e":13.338},{"w":"add","s":13.338,"e":13.537},{"w":"up","s":13.537,"e":13.637},{"w":"the","s":13.637,"e":13.725},{"w":"sum","s":13.725,"e":13.863},{"w":"of","s":13.863,"e":13.938},{"w":"expenditures","s":13.938,"e":14.65},{"w":"in","s":14.65,"e":14.738},{"w":"the","s":14.738,"e":14.825},{"w":"economy","s":14.825,"e":15.338},{"w":"consumer","s":15.363,"e":15.825},{"w":"spending","s":15.825,"e":16.637},{"w":"C","s":16.725,"e":17.175},{"w":"investment","s":17.275,"e":17.825},{"w":"spending","s":17.825,"e":18.438},{"w":"I","s":18.625,"e":18.775},{"w":"government","s":18.837,"e":19.25},{"w":"spending","s":19.25,"e":19.65},{"w":"G","s":19.725,"e":20.025},{"w":"and","s":20.087,"e":20.188},{"w":"the","s":20.188,"e":20.288},{"w":"difference","s":20.288,"e":20.637},{"w":"between","s":20.637,"e":20.913},{"w":"the","s":20.913,"e":21.025},{"w":"amount","s":21.025,"e":21.375},{"w":"paid","s":21.375,"e":21.613},{"w":"out","s":21.613,"e":21.738},{"w":"on","s":21.738,"e":21.863},{"w":"imports","s":21.863,"e":22.35},{"w":"M","s":22.475,"e":23.0},{"w":"and","s":23.087,"e":23.2},{"w":"that","s":23.2,"e":23.337},{"w":"received","s":23.337,"e":23.762},{"w":"in","s":23.762,"e":23.9},{"w":"exports","s":23.9,"e":24.425},{"w":"X","s":24.55,"e":25.075},{"w":"net","s":25.2,"e":25.375},{"w":"exports","s":25.375,"e":26.35},{"w":"X−M","s":26.5,"e":27.5},{"w":"or","s":27.613,"e":27.762},{"w":"NX","s":27.762,"e":28.6},{"w":"This","s":29.325,"e":29.525},{"w":"provides","s":29.525,"e":30.025},{"w":"a","s":30.025,"e":30.137},{"w":"measure","s":30.137,"e":30.5},{"w":"of","s":30.5,"e":30.637},{"w":"GDP","s":30.637,"e":31.625},{"w":"given","s":31.625,"e":31.95},{"w":"by","s":31.95,"e":32.112},{"w":"the","s":32.112,"e":32.212},{"w":"following","s":32.212,"e":32.65},{"w":"equation","s":32.65,"e":33.475}]},{"id":"b008","file":"b008.mp3","dur":11.025,"words":[{"w":"GDP","s":0.325,"e":1.15},{"w":"or","s":1.225,"e":1.375},{"w":"national","s":1.375,"e":1.85},{"w":"income","s":1.85,"e":2.475},{"w":"equals","s":2.575,"e":2.938},{"w":"C","s":2.938,"e":3.138},{"w":"plus","s":3.138,"e":3.425},{"w":"I","s":3.425,"e":3.575},{"w":"plus","s":3.575,"e":3.85},{"w":"G","s":3.85,"e":4.025},{"w":"plus","s":4.025,"e":4.3},{"w":"NX","s":4.3,"e":5.175},{"w":"consumer","s":5.312,"e":5.875},{"w":"spending","s":5.875,"e":6.45},{"w":"plus","s":6.525,"e":6.787},{"w":"investment","s":6.787,"e":7.325},{"w":"spending","s":7.325,"e":7.975},{"w":"plus","s":8.075,"e":8.35},{"w":"government","s":8.35,"e":8.775},{"w":"spending","s":8.775,"e":9.325},{"w":"plus","s":9.4,"e":9.713},{"w":"net","s":9.713,"e":9.9},{"w":"exports","s":9.9,"e":10.8}]},{"id":"b009","file":"b009.mp3","dur":5.775,"words":[{"w":"Self","s":0.3,"e":0.588},{"w":"test","s":0.588,"e":1.175},{"w":"What","s":1.275,"e":1.45},{"w":"two","s":1.45,"e":1.65},{"w":"things","s":1.65,"e":1.887},{"w":"are","s":1.887,"e":1.975},{"w":"measured","s":1.975,"e":2.35},{"w":"by","s":2.35,"e":2.538},{"w":"GDP","s":2.538,"e":3.45},{"w":"How","s":3.612,"e":3.825},{"w":"can","s":3.825,"e":3.938},{"w":"it","s":3.938,"e":4.025},{"w":"measure","s":4.025,"e":4.362},{"w":"two","s":4.362,"e":4.575},{"w":"things","s":4.575,"e":4.812},{"w":"at","s":4.812,"e":4.9},{"w":"once","s":4.9,"e":5.525}]},{"id":"b010","file":"b010.mp3","dur":2.875,"words":[{"w":"The","s":0.275,"e":0.375},{"w":"Measurement","s":0.375,"e":0.9},{"w":"of","s":0.9,"e":1.062},{"w":"Gross","s":1.062,"e":1.425},{"w":"Domestic","s":1.425,"e":1.925},{"w":"Product","s":1.925,"e":2.675}]},{"id":"b011","file":"b011.mp3","dur":9.7,"words":[{"w":"Gross","s":0.275,"e":0.625},{"w":"domestic","s":0.625,"e":1.15},{"w":"product","s":1.15,"e":1.925},{"w":"GDP","s":2.05,"e":3.05},{"w":"is","s":3.263,"e":3.413},{"w":"the","s":3.413,"e":3.5},{"w":"market","s":3.5,"e":3.825},{"w":"value","s":3.825,"e":4.275},{"w":"of","s":4.275,"e":4.438},{"w":"all","s":4.438,"e":4.775},{"w":"final","s":4.775,"e":5.175},{"w":"goods","s":5.175,"e":5.6},{"w":"and","s":5.6,"e":5.737},{"w":"services","s":5.737,"e":6.3},{"w":"produced","s":6.3,"e":6.763},{"w":"within","s":6.763,"e":6.963},{"w":"a","s":6.963,"e":7.025},{"w":"country","s":7.025,"e":7.8},{"w":"in","s":7.8,"e":7.938},{"w":"a","s":7.938,"e":8.0},{"w":"given","s":8.0,"e":8.3},{"w":"period","s":8.3,"e":8.688},{"w":"of","s":8.688,"e":8.775},{"w":"time","s":8.775,"e":9.45}]},{"id":"b012","file":"b012.mp3","dur":10.25,"words":[{"w":"Key","s":0.25,"e":0.487},{"w":"term","s":0.487,"e":0.95},{"w":"gross","s":1.038,"e":1.425},{"w":"domestic","s":1.425,"e":1.925},{"w":"product","s":1.925,"e":2.65},{"w":"GDP","s":2.775,"e":3.725},{"w":"the","s":4.125,"e":4.225},{"w":"market","s":4.225,"e":4.55},{"w":"value","s":4.55,"e":4.95},{"w":"of","s":4.95,"e":5.112},{"w":"all","s":5.112,"e":5.4},{"w":"final","s":5.4,"e":5.8},{"w":"goods","s":5.8,"e":6.175},{"w":"and","s":6.175,"e":6.312},{"w":"services","s":6.312,"e":6.875},{"w":"produced","s":6.875,"e":7.362},{"w":"within","s":7.362,"e":7.562},{"w":"a","s":7.562,"e":7.625},{"w":"country","s":7.625,"e":8.375},{"w":"in","s":8.375,"e":8.512},{"w":"a","s":8.512,"e":8.575},{"w":"given","s":8.575,"e":8.875},{"w":"period","s":8.875,"e":9.262},{"w":"of","s":9.262,"e":9.35},{"w":"time","s":9.35,"e":10.05}]},{"id":"b013","file":"b013.mp3","dur":3.05,"words":[{"w":"Let's","s":0.275,"e":0.525},{"w":"consider","s":0.525,"e":0.963},{"w":"each","s":0.963,"e":1.2},{"w":"phrase","s":1.2,"e":1.65},{"w":"in","s":1.65,"e":1.738},{"w":"this","s":1.738,"e":1.9},{"w":"definition","s":1.9,"e":2.8}]},{"id":"b014","file":"b014.mp3","dur":2.7,"words":[{"w":"GDP","s":0.325,"e":1.125},{"w":"Is","s":1.125,"e":1.312},{"w":"the","s":1.312,"e":1.4},{"w":"Market","s":1.4,"e":1.725},{"w":"Value","s":1.725,"e":2.425}]},{"id":"b015","file":"b015.mp3","dur":24.825,"words":[{"w":"GDP","s":0.325,"e":1.175},{"w":"adds","s":1.175,"e":1.5},{"w":"together","s":1.5,"e":1.938},{"w":"many","s":1.938,"e":2.225},{"w":"different","s":2.225,"e":2.525},{"w":"kinds","s":2.525,"e":2.812},{"w":"of","s":2.812,"e":2.9},{"w":"products","s":2.9,"e":3.6},{"w":"into","s":3.6,"e":3.85},{"w":"a","s":3.85,"e":3.975},{"w":"single","s":3.975,"e":4.375},{"w":"measure","s":4.375,"e":4.8},{"w":"of","s":4.8,"e":4.888},{"w":"the","s":4.888,"e":4.975},{"w":"value","s":4.975,"e":5.375},{"w":"of","s":5.375,"e":5.5},{"w":"economic","s":5.5,"e":6.088},{"w":"activity","s":6.088,"e":7.15},{"w":"To","s":7.287,"e":7.425},{"w":"do","s":7.425,"e":7.6},{"w":"this","s":7.6,"e":8.175},{"w":"it","s":8.287,"e":8.425},{"w":"uses","s":8.425,"e":8.825},{"w":"market","s":8.825,"e":9.15},{"w":"prices","s":9.15,"e":10.125},{"w":"Because","s":10.225,"e":10.525},{"w":"market","s":10.525,"e":10.85},{"w":"prices","s":10.85,"e":11.425},{"w":"measure","s":11.425,"e":11.762},{"w":"the","s":11.762,"e":11.9},{"w":"amount","s":11.9,"e":12.25},{"w":"people","s":12.25,"e":12.625},{"w":"are","s":12.625,"e":12.787},{"w":"willing","s":12.787,"e":13.125},{"w":"to","s":13.125,"e":13.25},{"w":"pay","s":13.25,"e":13.525},{"w":"for","s":13.525,"e":13.65},{"w":"different","s":13.65,"e":13.95},{"w":"goods","s":13.95,"e":14.625},{"w":"they","s":14.725,"e":14.875},{"w":"reflect","s":14.875,"e":15.325},{"w":"the","s":15.325,"e":15.425},{"w":"value","s":15.425,"e":15.825},{"w":"of","s":15.825,"e":15.925},{"w":"those","s":15.925,"e":16.2},{"w":"goods","s":16.2,"e":17.0},{"w":"If","s":17.15,"e":17.312},{"w":"the","s":17.312,"e":17.4},{"w":"price","s":17.4,"e":17.712},{"w":"of","s":17.712,"e":17.788},{"w":"an","s":17.788,"e":17.887},{"w":"apple","s":17.887,"e":18.312},{"w":"is","s":18.312,"e":18.488},{"w":"twice","s":18.488,"e":18.875},{"w":"the","s":18.875,"e":18.975},{"w":"price","s":18.975,"e":19.288},{"w":"of","s":19.288,"e":19.363},{"w":"an","s":19.363,"e":19.45},{"w":"orange","s":19.45,"e":20.175},{"w":"then","s":20.275,"e":20.413},{"w":"an","s":20.413,"e":20.538},{"w":"apple","s":20.538,"e":20.875},{"w":"contributes","s":20.875,"e":21.462},{"w":"twice","s":21.462,"e":21.988},{"w":"as","s":21.988,"e":22.15},{"w":"much","s":22.15,"e":22.4},{"w":"to","s":22.4,"e":22.525},{"w":"GDP","s":22.525,"e":23.325},{"w":"as","s":23.325,"e":23.5},{"w":"does","s":23.5,"e":23.688},{"w":"an","s":23.688,"e":23.775},{"w":"orange","s":23.775,"e":24.55}]},{"id":"b016","file":"b016.mp3","dur":1.325,"words":[{"w":"Of","s":0.362,"e":0.525},{"w":"All","s":0.525,"e":1.025}]},{"id":"b017","file":"b017.mp3","dur":15.05,"words":[{"w":"GDP","s":0.325,"e":0.95},{"w":"includes","s":0.95,"e":1.387},{"w":"all","s":1.387,"e":1.65},{"w":"items","s":1.65,"e":2.025},{"w":"produced","s":2.025,"e":2.487},{"w":"in","s":2.487,"e":2.562},{"w":"the","s":2.562,"e":2.65},{"w":"economy","s":2.65,"e":3.425},{"w":"and","s":3.425,"e":3.625},{"w":"sold","s":3.625,"e":4.05},{"w":"in","s":4.05,"e":4.15},{"w":"markets","s":4.15,"e":5.15},{"w":"GDP","s":5.3,"e":5.987},{"w":"measures","s":5.987,"e":6.4},{"w":"the","s":6.4,"e":6.5},{"w":"market","s":6.5,"e":6.825},{"w":"value","s":6.825,"e":7.175},{"w":"of","s":7.175,"e":7.325},{"w":"not","s":7.325,"e":7.55},{"w":"just","s":7.55,"e":7.812},{"w":"apples","s":7.812,"e":8.25},{"w":"and","s":8.25,"e":8.375},{"w":"oranges","s":8.375,"e":9.287},{"w":"but","s":9.287,"e":9.438},{"w":"also","s":9.438,"e":9.812},{"w":"pears","s":9.812,"e":10.3},{"w":"and","s":10.3,"e":10.425},{"w":"grapefruit","s":10.425,"e":11.175},{"w":"books","s":11.287,"e":11.6},{"w":"and","s":11.6,"e":11.725},{"w":"films","s":11.725,"e":12.275},{"w":"haircuts","s":12.387,"e":13.125},{"w":"healthcare","s":13.225,"e":13.85},{"w":"and","s":13.85,"e":13.975},{"w":"so","s":13.975,"e":14.2},{"w":"on","s":14.2,"e":14.8}]},{"id":"b018","file":"b018.mp3","dur":36.0,"words":[{"w":"GDP","s":0.325,"e":1.15},{"w":"also","s":1.15,"e":1.55},{"w":"includes","s":1.55,"e":2.025},{"w":"the","s":2.025,"e":2.125},{"w":"market","s":2.125,"e":2.45},{"w":"value","s":2.45,"e":2.825},{"w":"of","s":2.825,"e":2.913},{"w":"the","s":2.913,"e":3.0},{"w":"housing","s":3.0,"e":3.4},{"w":"services","s":3.4,"e":3.95},{"w":"provided","s":3.95,"e":4.425},{"w":"by","s":4.425,"e":4.588},{"w":"the","s":4.588,"e":4.725},{"w":"economy's","s":4.725,"e":5.325},{"w":"stock","s":5.325,"e":5.612},{"w":"of","s":5.612,"e":5.7},{"w":"housing","s":5.7,"e":6.6},{"w":"For","s":6.737,"e":6.9},{"w":"rental","s":6.9,"e":7.225},{"w":"housing","s":7.225,"e":7.95},{"w":"this","s":8.05,"e":8.25},{"w":"value","s":8.25,"e":8.65},{"w":"is","s":8.65,"e":8.812},{"w":"easy","s":8.812,"e":9.15},{"w":"to","s":9.15,"e":9.275},{"w":"calculate","s":9.275,"e":9.812},{"w":"the","s":9.838,"e":9.95},{"w":"rent","s":9.95,"e":10.475},{"w":"equals","s":10.475,"e":10.887},{"w":"both","s":10.887,"e":11.137},{"w":"the","s":11.137,"e":11.25},{"w":"tenant's","s":11.25,"e":11.65},{"w":"expenditure","s":11.65,"e":12.725},{"w":"and","s":12.725,"e":12.838},{"w":"the","s":12.838,"e":12.95},{"w":"landlord's","s":12.95,"e":13.512},{"w":"income","s":13.512,"e":14.5},{"w":"Yet","s":14.588,"e":14.812},{"w":"many","s":14.812,"e":15.05},{"w":"people","s":15.05,"e":15.363},{"w":"own","s":15.363,"e":15.463},{"w":"the","s":15.463,"e":15.575},{"w":"place","s":15.575,"e":15.887},{"w":"where","s":15.887,"e":16.025},{"w":"they","s":16.025,"e":16.225},{"w":"live","s":16.225,"e":16.7},{"w":"and","s":16.7,"e":16.8},{"w":"therefore","s":16.837,"e":17.625},{"w":"do","s":17.688,"e":17.812},{"w":"not","s":17.812,"e":18.05},{"w":"pay","s":18.05,"e":18.262},{"w":"rent","s":18.262,"e":19.075},{"w":"The","s":19.163,"e":19.262},{"w":"government","s":19.262,"e":19.725},{"w":"includes","s":19.725,"e":20.225},{"w":"this","s":20.225,"e":20.488},{"w":"owner","s":20.488,"e":20.837},{"w":"occupied","s":20.837,"e":21.438},{"w":"housing","s":21.438,"e":21.925},{"w":"in","s":21.925,"e":22.062},{"w":"GDP","s":22.062,"e":23.062},{"w":"by","s":23.062,"e":23.275},{"w":"estimating","s":23.275,"e":23.9},{"w":"its","s":23.9,"e":24.087},{"w":"rental","s":24.087,"e":24.425},{"w":"value","s":24.425,"e":25.25},{"w":"That","s":25.9,"e":26.137},{"w":"is","s":26.137,"e":26.475},{"w":"GDP","s":26.562,"e":27.275},{"w":"is","s":27.275,"e":27.425},{"w":"based","s":27.425,"e":27.738},{"w":"on","s":27.738,"e":27.837},{"w":"the","s":27.837,"e":27.925},{"w":"assumption","s":27.925,"e":28.475},{"w":"that","s":28.475,"e":28.587},{"w":"the","s":28.587,"e":28.738},{"w":"owner","s":28.738,"e":29.25},{"w":"in","s":29.325,"e":29.425},{"w":"effect","s":29.425,"e":30.1},{"w":"pays","s":30.212,"e":30.575},{"w":"rent","s":30.575,"e":30.775},{"w":"to","s":30.775,"e":30.863},{"w":"themselves","s":30.863,"e":31.825},{"w":"so","s":31.962,"e":32.15},{"w":"the","s":32.15,"e":32.288},{"w":"rent","s":32.288,"e":32.625},{"w":"is","s":32.625,"e":32.75},{"w":"included","s":32.75,"e":33.288},{"w":"both","s":33.288,"e":33.65},{"w":"in","s":33.65,"e":33.763},{"w":"their","s":33.763,"e":33.925},{"w":"expenditure","s":33.925,"e":34.837},{"w":"and","s":34.837,"e":35.025},{"w":"income","s":35.025,"e":35.75}]},{"id":"b019","file":"b019.mp3","dur":7.325,"words":[{"w":"[End","s":0.3,"e":0.512},{"w":"of","s":0.512,"e":0.6},{"w":"the","s":0.6,"e":0.775},{"w":"assigned","s":0.775,"e":1.15},{"w":"extract","s":1.15,"e":1.9},{"w":"p.","s":2.0,"e":2.312},{"w":"438","s":2.312,"e":3.975},{"w":"The","s":4.037,"e":4.175},{"w":"chapter","s":4.175,"e":4.588},{"w":"continues","s":4.588,"e":5.237},{"w":"with","s":5.237,"e":5.362},{"w":"the","s":5.362,"e":5.463},{"w":"measurement","s":5.463,"e":5.975},{"w":"of","s":5.975,"e":6.15},{"w":"GDP","s":6.15,"e":7.2}]}]}</script>
+<script>
+"use strict";
+var D = JSON.parse(document.getElementById("reader-data").textContent);
+var B = D.blocks, N = B.length;
+var au = document.getElementById("au");
+var KEY = "reader:" + D.key;
+
+/* cumulative start time of each playable block */
+var cum = new Array(N), total = 0;
+for (var i = 0; i < N; i++) { cum[i] = total; total += B[i].dur || 0; }
+var idx = {}; for (i = 0; i < N; i++) idx[B[i].id] = i;
+
+var cur = -1, playing = false, raf = 0, lastManual = 0, wordsOf = {}, seeking = false;
+
+/* ---------- persistence ---------- */
+function load() { try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch (e) { return {}; } }
+function save(extra) {
+  try {
+    var s = load();
+    s.rate = au.playbackRate; s.continuous = cbCont.checked; s.theme = s.theme;
+    if (cur >= 0) { s.blockId = B[cur].id; s.t = au.currentTime || 0; }
+    if (extra) for (var k in extra) s[k] = extra[k];
+    localStorage.setItem(KEY, JSON.stringify(s));
+  } catch (e) {}
+}
+
+/* ---------- elements ---------- */
+var cbCont = document.getElementById("cont"), selRate = document.getElementById("rate");
+var btnPlay = document.getElementById("play"), btnPrev = document.getElementById("prev"), btnNext = document.getElementById("next");
+var btnTheme = document.getElementById("theme"), elPos = document.getElementById("pos");
+var elProg = document.getElementById("prog"), elFill = document.getElementById("progfill");
+var elResume = document.getElementById("resume"), picon = document.getElementById("picon");
+
+function blockEl(i) { return document.querySelector('[data-id="' + B[i].id + '"]'); }
+function spkEl(i) { return document.querySelector('.spk[data-for="' + B[i].id + '"]'); }
+
+/* ---------- time formatting ---------- */
+function fmt(s) {
+  if (!isFinite(s) || s < 0) s = 0;
+  s = Math.floor(s);
+  var h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), x = s % 60;
+  var mm = (m < 10 ? "0" : "") + m;
+  return (h ? h + ":" : "") + mm + ":" + (x < 10 ? "0" : "") + x;
+}
+
+/* ---------- word spans ---------- */
+function norm(s) { return (s || "").toLowerCase().replace(/[^a-z0-9']/g, ""); }
+function ensureWords(i) {
+  var id = B[i].id;
+  if (wordsOf[id] !== undefined) return wordsOf[id];
+  var w = B[i].words, el = blockEl(i);
+  if (!w || !w.length || !el) { wordsOf[id] = null; return null; }
+  var walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+    acceptNode: function (n) {
+      if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+      var p = n.parentElement;
+      if (!p || p.closest(".spk") || p.closest(".pg") || p.closest(".box-k") || p.closest(".box-t")) return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }
+  });
+  var nodes = [], n;
+  while ((n = walker.nextNode())) nodes.push(n);
+  var spans = [];
+  for (var k = 0; k < nodes.length; k++) {
+    var node = nodes[k], parts = node.nodeValue.split(/(\s+)/), frag = document.createDocumentFragment();
+    for (var j = 0; j < parts.length; j++) {
+      if (!parts[j]) continue;
+      if (/^\s+$/.test(parts[j])) { frag.appendChild(document.createTextNode(parts[j])); }
+      else { var sp = document.createElement("span"); sp.className = "w"; sp.textContent = parts[j]; frag.appendChild(sp); spans.push(sp); }
+    }
+    node.parentNode.replaceChild(frag, node);
+  }
+  /* align display words with TTS tokens, greedily and forgivingly */
+  var out = [], wi = 0;
+  for (k = 0; k < spans.length; k++) {
+    var t = norm(spans[k].textContent);
+    if (!t) continue;
+    var found = -1, lim = Math.min(wi + 5, w.length), q;
+    for (q = wi; q < lim; q++) { if (norm(w[q].w) === t) { found = q; break; } }
+    if (found < 0) for (q = wi; q < lim; q++) { var nw = norm(w[q].w); if (nw && (nw.indexOf(t) === 0 || t.indexOf(nw) === 0)) { found = q; break; } }
+    if (found >= 0) { out.push({ el: spans[k], s: w[found].s, e: w[found].e }); wi = found + 1; }
+  }
+  wordsOf[id] = out.length >= 2 ? out : null;
+  return wordsOf[id];
+}
+var litEl = null;
+function clearLit() { if (litEl) { litEl.classList.remove("lit"); litEl = null; } }
+function paintWord(i, t) {
+  var arr = wordsOf[B[i].id];
+  if (!arr) return;
+  var hit = null;
+  for (var k = 0; k < arr.length; k++) { if (t >= arr[k].s - 0.02 && t < arr[k].e + 0.02) { hit = arr[k].el; break; } if (arr[k].s > t) break; }
+  if (hit !== litEl) { clearLit(); if (hit) { hit.classList.add("lit"); litEl = hit; } }
+}
+
+/* ---------- UI ---------- */
+function setPlayIcon(p) {
+  picon.innerHTML = p ? '<path fill="currentColor" d="M7 5h3.5v14H7zM13.5 5H17v14h-3.5z"/>' : '<path fill="currentColor" d="M8 5v14l11-7z"/>';
+  btnPlay.setAttribute("aria-label", p ? "Pause" : "Play");
+}
+function updateUI() {
+  var t = (cur >= 0 ? cum[cur] + (au.currentTime || 0) : 0);
+  elFill.style.width = (total > 0 ? Math.min(100, (t / total) * 100) : 0) + "%";
+  elPos.textContent = "Block " + (cur >= 0 ? cur + 1 : 1) + " / " + N + " · " + fmt(t) + " / " + fmt(total);
+  elProg.setAttribute("aria-valuetext", elPos.textContent);
+}
+function tick() {
+  if (cur >= 0) { updateUI(); paintWord(cur, au.currentTime); }
+  if (playing) raf = requestAnimationFrame(tick); else raf = 0;
+}
+function markCurrent(i) {
+  var old = document.querySelector(".reading"); if (old) old.classList.remove("reading");
+  document.querySelectorAll(".spk.on").forEach(function (b) { b.classList.remove("on"); });
+  clearLit();
+  var el = blockEl(i); if (el) el.classList.add("reading");
+  if (playing) { var s = spkEl(i); if (s) s.classList.add("on"); }
+}
+function scrollTo(i) {
+  if (Date.now() - lastManual < 2500) return;
+  var el = blockEl(i); if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
+}
+
+/* ---------- playback ---------- */
+function setCur(i, opt) {
+  opt = opt || {};
+  if (i < 0 || i >= N) return;
+  var changed = (i !== cur);
+  cur = i;
+  if (changed) {
+    au.src = "audio/" + B[i].file;
+    au.playbackRate = parseFloat(selRate.value);
+    ensureWords(i);
+  }
+  if (opt.time != null) { try { au.currentTime = opt.time; } catch (e) { seeking = opt.time; } }
+  markCurrent(i);
+  if (opt.play) doPlay(); else { updateUI(); if (opt.scroll !== false) scrollTo(i); }
+  if (opt.scroll !== false && opt.play) scrollTo(i);
+  save();
+}
+function doPlay() {
+  var p = au.play();
+  if (p && p.catch) p.catch(function () { playing = false; setPlayIcon(false); markCurrent(cur); });
+}
+function pause() { au.pause(); }
+function toggle() {
+  if (cur < 0) { setCur(0, { play: true }); return; }
+  if (playing) pause(); else doPlay();
+}
+function step(d) {
+  var i = (cur < 0 ? (d > 0 ? 0 : 0) : cur + d);
+  if (i < 0) i = 0; if (i >= N) i = N - 1;
+  setCur(i, { play: playing || cur < 0 ? true : false, time: 0 });
+}
+
+au.addEventListener("play", function () { playing = true; setPlayIcon(true); markCurrent(cur); if (!raf) raf = requestAnimationFrame(tick); save(); });
+au.addEventListener("pause", function () { playing = false; setPlayIcon(false); markCurrent(cur); updateUI(); save(); });
+au.addEventListener("timeupdate", function () { if (!playing) { updateUI(); paintWord(cur, au.currentTime); } });
+au.addEventListener("loadedmetadata", function () { if (seeking !== false && seeking != null) { try { au.currentTime = seeking; } catch (e) {} seeking = false; } });
+au.addEventListener("ended", function () {
+  playing = false; setPlayIcon(false); clearLit();
+  if (cbCont.checked && cur + 1 < N) { setCur(cur + 1, { play: true, time: 0 }); }
+  else { markCurrent(cur); updateUI(); save(); }
+});
+au.addEventListener("error", function () { playing = false; setPlayIcon(false); markCurrent(cur); });
+
+/* ---------- wiring ---------- */
+document.addEventListener("click", function (e) {
+  var b = e.target.closest ? e.target.closest(".spk") : null;
+  if (!b) return;
+  e.preventDefault();
+  var i = idx[b.getAttribute("data-for")];
+  if (i === undefined) return;
+  if (i === cur) { if (playing) pause(); else doPlay(); }
+  else setCur(i, { play: true, time: 0 });
+});
+btnPlay.addEventListener("click", toggle);
+btnPrev.addEventListener("click", function () { step(-1); });
+btnNext.addEventListener("click", function () { step(1); });
+selRate.addEventListener("change", function () { au.playbackRate = parseFloat(selRate.value); save(); });
+cbCont.addEventListener("change", save);
+btnTheme.addEventListener("click", function () {
+  var r = document.documentElement, now = r.getAttribute("data-theme");
+  var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme:dark)").matches;
+  var next = now ? (now === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark");
+  r.setAttribute("data-theme", next); save({ theme: next });
+});
+elProg.addEventListener("click", function (e) {
+  if (!total) return;
+  var r = elProg.getBoundingClientRect(), f = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width));
+  var t = f * total, i = 0;
+  for (var k = 0; k < N; k++) { if (t >= cum[k]) i = k; else break; }
+  setCur(i, { play: playing, time: Math.max(0, t - cum[i]) });
+  if (!playing) { updateUI(); }
+});
+window.addEventListener("wheel", function () { lastManual = Date.now(); }, { passive: true });
+window.addEventListener("touchmove", function () { lastManual = Date.now(); }, { passive: true });
+document.addEventListener("keydown", function (e) {
+  var t = e.target, tag = t && t.tagName;
+  if (tag === "INPUT" || tag === "SELECT" || tag === "TEXTAREA" || (t && t.isContentEditable)) return;
+  if (e.metaKey || e.ctrlKey || e.altKey) return;
+  var rates = [0.75, 1, 1.25, 1.5, 2], ri = rates.indexOf(parseFloat(selRate.value));
+  if (e.key === " " || e.key === "Spacebar") { e.preventDefault(); toggle(); }
+  else if (e.key === "ArrowLeft") { e.preventDefault(); step(-1); }
+  else if (e.key === "ArrowRight") { e.preventDefault(); step(1); }
+  else if (e.key === "[") { e.preventDefault(); if (ri > 0) { selRate.value = String(rates[ri - 1]); au.playbackRate = rates[ri - 1]; save(); } }
+  else if (e.key === "]") { e.preventDefault(); if (ri < rates.length - 1) { selRate.value = String(rates[ri + 1]); au.playbackRate = rates[ri + 1]; save(); } }
+  else if (e.key === "c" || e.key === "C") { e.preventDefault(); cbCont.checked = !cbCont.checked; save(); }
+});
+window.addEventListener("pagehide", function () { try { au.pause(); } catch (e) {} save(); });
+window.addEventListener("beforeunload", function () { try { au.pause(); } catch (e) {} save(); });
+
+/* ---------- boot ---------- */
+(function boot() {
+  var s = load();
+  if (s.theme === "dark" || s.theme === "light") document.documentElement.setAttribute("data-theme", s.theme);
+  cbCont.checked = s.continuous === true;
+  var r = parseFloat(s.rate);
+  if (r && [0.75, 1, 1.25, 1.5, 2].indexOf(r) >= 0) { selRate.value = String(r); }
+  au.playbackRate = parseFloat(selRate.value);
+  updateUI();
+  if (s.blockId && idx[s.blockId] !== undefined && idx[s.blockId] > 0) {
+    var i = idx[s.blockId];
+    elResume.innerHTML = '<span>Resume at block <b>' + (i + 1) + '</b> of ' + N + '</span><span class="x">&times;</span>';
+    elResume.hidden = false;
+    elResume.addEventListener("click", function (e) {
+      elResume.hidden = true;
+      if (e.target.classList.contains("x")) return;
+      lastManual = 0;
+      setCur(i, { play: false, time: s.t > 1 ? s.t : 0 });
+    });
+    setTimeout(function () { elResume.hidden = true; }, 15000);
+  }
+})();
+</script>
