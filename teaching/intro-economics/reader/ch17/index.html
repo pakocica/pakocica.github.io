@@ -113,6 +113,7 @@ figure.tbl td:first-child{text-align:left}
 /* ---- section numbers (chapter.section, in order of appearance) + section-only view (?sec=bNNN) ---- */
 .snum{color:var(--grey);font-weight:500;margin-right:.45em;font-variant-numeric:tabular-nums}
 body.seconly .toc{display:none}
+body.seconly header .spk{display:none}
 body.seconly #doc .blk:not(.insec),body.seconly #doc .pg:not(.insec){display:none}
 body.seconly #doc [hidden]{display:none}
 .secnote{font-size:13.5px;color:var(--soft);margin:0 0 22px;padding:9px 12px;border:1px solid var(--hair);border-radius:8px;background:var(--wash)}
@@ -698,8 +699,11 @@ function applySection() {
   var hdr = document.querySelector("header"); if (hdr) hdr.appendChild(note);
 }
 
-function blockEl(i) { return (ACT || document).querySelector('[data-id="' + B[i].id + '"]'); }
-function spkEl(i) { return (ACT || document).querySelector('.spk[data-for="' + B[i].id + '"]'); }
+/* the chapter title (b001) lives in <header>, OUTSIDE the edition wrapper ACT — a lookup scoped to
+   ACT missed it, so its speaker set the audio but drew no ring, no highlight, no scroll (Pavel, 22
+   Sep: "clicking the speaker icon in the title does nothing"). Fall back to the document. */
+function blockEl(i) { var q = '[data-id="' + B[i].id + '"]'; return (ACT && ACT.querySelector(q)) || document.querySelector(q); }
+function spkEl(i) { var q = '.spk[data-for="' + B[i].id + '"]'; return (ACT && ACT.querySelector(q)) || document.querySelector(q); }
 
 /* ---------- time formatting ---------- */
 function fmt(s) {
