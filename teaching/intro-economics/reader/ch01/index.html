@@ -196,6 +196,20 @@ select#rate:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
 @media(prefers-reduced-motion:reduce){.tocp{animation:none}}
 .toch{flex:none;display:flex;align-items:center;gap:10px;padding:12px 13px 10px;border-bottom:1px solid var(--hair)}
 .toch b{font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--grey);font-weight:600}
+/* ---- flag: report a problem in the text (shown only when the app that opened the page says the reader is signed in) ---- */
+.flagb{padding:12px 14px calc(16px + env(safe-area-inset-bottom))}
+.flagwhere{font-size:13.5px;line-height:1.45;color:var(--soft);margin-bottom:10px}
+.flagwhere b{color:var(--ink);font-weight:600}
+.flagwhere q{display:block;margin-top:5px;color:var(--grey);font-style:italic}
+.flagwhere q::before,.flagwhere q::after{content:""}
+#flagtext{display:block;width:100%;box-sizing:border-box;font:inherit;font-size:16px;line-height:1.45;color:var(--ink);background:var(--wash);border:1px solid var(--hair);border-radius:10px;padding:10px 12px;resize:vertical;min-height:96px}
+#flagtext:focus{outline:2px solid var(--clay);outline-offset:1px}
+.flagrow{display:flex;align-items:center;gap:12px;margin-top:10px}
+.flagmsg{flex:1 1 auto;font-size:13.5px;color:var(--soft);min-height:1.3em}
+.flagmsg.ok{color:var(--ok)}.flagmsg.bad{color:var(--clay)}
+.flagsend{flex:none;font:inherit;font-size:14px;font-weight:600;color:#fff;background:var(--clay);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.flagsend[disabled]{opacity:.5;cursor:default}
+.flagnote{padding:12px 0 0;border-top:0;margin-top:8px}
 .tocb{position:relative;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:8px 10px calc(14px + env(safe-area-inset-bottom))}
 .chp+.chp{border-top:1px solid var(--hair)}
 .chx{display:flex;width:100%;align-items:baseline;gap:9px;padding:10px 8px;border:0;border-radius:8px;background:transparent;text-align:left;font:inherit;font-size:15px;color:var(--ink);cursor:pointer;-webkit-tap-highlight-color:transparent}
@@ -730,6 +744,7 @@ a.secref{color:var(--clay);text-decoration:none;border-bottom:1px solid var(--ha
     <div class="row r2">
      <div class="seg" id="seg" role="group" aria-label="Which text to show (v)" hidden><button type="button" class="segb" data-v="book" aria-pressed="true">Book</button><button type="button" class="segb" data-v="house" aria-pressed="false">House</button></div>
      <button class="tb tbl" id="tocbtn" title="Contents &mdash; jump to a chapter or section (t)" aria-label="Contents" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M3.5 5h2.6v2.4H3.5zM8.4 5.2H20v2H8.4zM3.5 10.8h2.6v2.4H3.5zM8.4 11H20v2H8.4zM3.5 16.6h2.6v2.4H3.5zM8.4 16.8H20v2H8.4z"/></svg><span class="tbtxt">Contents</span></button>
+     <button class="tb tbl" id="flagbtn" title="Report a problem in the text to the lecturer" aria-label="Report a problem" aria-haspopup="dialog" aria-expanded="false" hidden><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 21V4M5 4h13l-2.5 4L18 12H5"/></svg><span class="tbtxt">Flag</span></button>
      <select id="rate" title="Playback speed ([ / ])" aria-label="Playback speed">
       <option value="0.75">0.75&times;</option><option value="1" selected>1&times;</option><option value="1.25">1.25&times;</option><option value="1.5">1.5&times;</option><option value="2">2&times;</option>
      </select>
@@ -764,6 +779,20 @@ a.secref{color:var(--clay);text-decoration:none;border-bottom:1px solid var(--ha
   <button class="tb" id="tocx" title="Close (Esc)" aria-label="Close contents"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg></button>
  </div>
  <div class="tocb" id="tocbody"></div>
+</div>
+<div class="tocwrap" id="flagwrap" hidden></div>
+<div class="tocp flagp" id="flagp" role="dialog" aria-modal="true" aria-labelledby="flagtitle" tabindex="-1" hidden>
+ <div class="toch">
+  <b id="flagtitle">Report a problem</b>
+  <span class="sp"></span>
+  <button class="tb" id="flagx" title="Close (Esc)" aria-label="Close"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg></button>
+ </div>
+ <div class="tocb flagb">
+  <div class="flagwhere" id="flagwhere"></div>
+  <textarea id="flagtext" rows="4" maxlength="2000" placeholder="What is wrong here? A wrong number, a typo, a sentence that does not hold, a figure that does not match the text&hellip;"></textarea>
+  <div class="flagrow"><span class="flagmsg" id="flagmsg"></span><button type="button" class="flagsend" id="flagsend">Send to the lecturer</button></div>
+  <div class="tocnote flagnote">The flag names this chapter, the paragraph it points at and which text you were reading, and reaches the lecturer under your Sextant account. Nothing else is sent.</div>
+ </div>
 </div>
 
 <audio id="au" preload="metadata"></audio>
@@ -1832,6 +1861,110 @@ function progPost(id, e) {
   try { if (window.parent && window.parent !== window) window.parent.postMessage(msg, "*"); } catch (x) {}
   try { if (window.opener) window.opener.postMessage(msg, "*"); } catch (x) {}
 }
+/* FLAGS (22 Sep 2026, Pavel: "a flag icon letting logged-in users flag errors in the reader").
+   The page itself knows no one; the app that opened it does. On load the page says hello to
+   its parent (the app's overlay) or opener (a gated tab); the app answers {canFlag} - true for
+   a signed-in account, false for a guest - and only then does the Flag button appear. A flag
+   is one postMessage {type:"sextant-flag", chapter, block, sec, ver, quote, text, url, nonce};
+   the app queues it into its edit-request outbox under the account and acks. The text is the
+   reader's own words, so on the receiving side it is untrusted input like any edit request. */
+var FLAG = { can: false, nonce: 0, timer: 0, open: false, back: null };
+var btnFlag = document.getElementById("flagbtn"), elFlagWrap = document.getElementById("flagwrap"), elFlagP = document.getElementById("flagp");
+var elFlagText = document.getElementById("flagtext"), elFlagWhere = document.getElementById("flagwhere"), elFlagMsg = document.getElementById("flagmsg");
+var btnFlagSend = document.getElementById("flagsend"), btnFlagX = document.getElementById("flagx");
+function appWindows() {
+  var out = [];
+  try { if (window.parent && window.parent !== window) out.push(window.parent); } catch (x) {}
+  try { if (window.opener) out.push(window.opener); } catch (x) {}
+  return out;
+}
+function appPost(msg) { appWindows().forEach(function (w) { try { w.postMessage(msg, "*"); } catch (x) {} }); }
+function fromApp(ev) { var ws = appWindows(); for (var k = 0; k < ws.length; k++) if (ev.source === ws[k]) return true; return false; }
+window.addEventListener("message", function (ev) {
+  var d = ev.data;
+  if (!d || typeof d !== "object" || !fromApp(ev)) return;
+  if (d.type === "sextant-hello") { FLAG.can = !!d.canFlag; if (btnFlag) btnFlag.hidden = !FLAG.can; return; }
+  if (d.type === "sextant-flag-ack" && String(d.nonce) === String(FLAG.nonce)) flagDone(!!d.ok, d.reason || "");
+});
+if (appWindows().length) {
+  appPost({ type: "sextant-hello" });
+  setTimeout(function () { if (!FLAG.can) appPost({ type: "sextant-hello" }); }, 2000);
+}
+/* the paragraph a flag points at: the one playing, else the first one in view */
+function flagTarget() {
+  var i = -1, el = null;
+  if (cur >= 0 && au && !au.paused) { i = cur; el = blockEl(i); }
+  if (!el) {
+    var all = (ACT || document).querySelectorAll(".blk");
+    for (var k = 0; k < all.length; k++) { var r = all[k].getBoundingClientRect(); if (r.bottom > 90 && r.height > 0) { el = all[k]; break; } }
+    if (el) { var id0 = el.getAttribute("data-id"); i = (id0 && idx[id0] !== undefined) ? idx[id0] : -1; }
+  }
+  if (!el) return null;
+  var raw = (i >= 0 && B[i] && B[i].tts) ? B[i].tts : (el.innerText || el.textContent || "");
+  return { id: el.getAttribute("data-id") || "", n: i >= 0 ? i + 1 : 0,
+           quote: String(raw).replace(/\s+/g, " ").trim().slice(0, 140), sec: hereId() || "" };
+}
+function openFlag() {
+  if (!FLAG.can || !elFlagP) return;
+  var tg = flagTarget();
+  FLAG.target = tg;
+  elFlagWhere.innerHTML = "";
+  var where = document.createElement("div");
+  var lab = D.labels || {}, vname = MULTI ? ((lab[VER] || VER) + " text") : "";
+  var b = document.createElement("b");
+  b.textContent = "Chapter " + (D.chapter == null ? "" : D.chapter) + (tg && tg.n ? " · paragraph " + tg.n + " of " + N : "") + (vname ? " · " + vname : "");
+  where.appendChild(b);
+  if (tg && tg.quote) { var q = document.createElement("q"); q.textContent = "“" + tg.quote + (tg.quote.length >= 140 ? "…" : "") + "”"; where.appendChild(q); }
+  if (!tg) where.appendChild(document.createTextNode("Could not tell which paragraph you are on — say where in the text."));
+  elFlagWhere.appendChild(where);
+  elFlagMsg.textContent = ""; elFlagMsg.className = "flagmsg";
+  btnFlagSend.disabled = false;
+  var back = document.activeElement;
+  FLAG.back = (back && back !== document.body && back !== document.documentElement) ? back : btnFlag;
+  elFlagWrap.hidden = false; elFlagP.hidden = false; FLAG.open = true;
+  btnFlag.setAttribute("aria-expanded", "true");
+  document.documentElement.style.overflow = "hidden"; document.body.style.overflow = "hidden";
+  try { elFlagText.focus(); } catch (e) {}
+}
+function closeFlag() {
+  if (!FLAG.open) return;
+  if (FLAG.timer) { clearTimeout(FLAG.timer); FLAG.timer = 0; }
+  elFlagWrap.hidden = true; elFlagP.hidden = true; FLAG.open = false;
+  btnFlag.setAttribute("aria-expanded", "false");
+  document.documentElement.style.overflow = ""; document.body.style.overflow = "";
+  try { if (FLAG.back && FLAG.back.focus) FLAG.back.focus(); } catch (e) {}
+  FLAG.back = null;
+}
+function flagSend() {
+  var text = (elFlagText.value || "").trim();
+  if (!text) { elFlagMsg.textContent = "Say what is wrong first."; elFlagMsg.className = "flagmsg bad"; try { elFlagText.focus(); } catch (e) {} return; }
+  var tg = FLAG.target || {};
+  FLAG.nonce = Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  btnFlagSend.disabled = true;
+  elFlagMsg.textContent = "Sending…"; elFlagMsg.className = "flagmsg";
+  appPost({ type: "sextant-flag", nonce: FLAG.nonce, chapter: PCH, block: tg.id || "", sec: tg.sec || "", ver: VER,
+            quote: tg.quote || "", text: text, url: location.href });
+  if (FLAG.timer) clearTimeout(FLAG.timer);
+  FLAG.timer = setTimeout(function () { FLAG.timer = 0; flagDone(false, "timeout"); }, 5000);
+}
+function flagDone(ok, reason) {
+  if (FLAG.timer) { clearTimeout(FLAG.timer); FLAG.timer = 0; }
+  if (ok) {
+    elFlagMsg.textContent = "Sent. Thank you."; elFlagMsg.className = "flagmsg ok";
+    elFlagText.value = "";
+    setTimeout(function () { if (FLAG.open) closeFlag(); }, 1400);
+    return;
+  }
+  btnFlagSend.disabled = false;
+  elFlagMsg.className = "flagmsg bad";
+  elFlagMsg.textContent = reason === "signin" ? "Sign in to Sextant with your account to send a flag." : "Could not send. Open the reader from Sextant and try again.";
+}
+if (btnFlag) btnFlag.addEventListener("click", function () { if (FLAG.open) closeFlag(); else openFlag(); });
+if (btnFlagX) btnFlagX.addEventListener("click", closeFlag);
+if (elFlagWrap) elFlagWrap.addEventListener("click", closeFlag);
+if (btnFlagSend) btnFlagSend.addEventListener("click", flagSend);
+if (elFlagP) elFlagP.addEventListener("keydown", function (ev) { if (ev.key === "Escape") { ev.preventDefault(); ev.stopPropagation(); closeFlag(); } });
+
 function progFlush() {
   pTimer = 0; pSentT = Date.now();
   if (!PSEC.length) progSections();
