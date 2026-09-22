@@ -840,10 +840,14 @@ function xrefReset() {
   XREV.forEach(function (el) { if (el.classList.contains("xrev")) el.classList.remove("xrev"); else el.hidden = true; });
   XREV = []; paintXback();
 }
-function xrefJump(key) {
+/* The return point is the LINK ELEMENT, not a scroll offset: inside the Sextant overlay (an
+   iframe) iOS sizes the frame to its content, so the scrolling happens in the parent page —
+   window.scrollY reads 0 there and window.scrollTo does nothing, while scrollIntoView still
+   reaches the right scroller (Pavel, 22 Sep: "the back button has no effect"). */
+function xrefJump(key, from) {
   var t = xrefTargets(ACT || document)[key]; if (!t) return;
   xrefReveal(t);
-  XSTACK.push(window.scrollY); paintXback();
+  XSTACK.push(from || t); paintXback();
   lastManual = Date.now();
   t.scrollIntoView({ block: "center", behavior: "smooth" });
   t.classList.remove("xhit"); void t.offsetWidth; t.classList.add("xhit");
@@ -851,14 +855,14 @@ function xrefJump(key) {
 }
 function xrefBack() {
   if (!XSTACK.length) return;
-  var y = XSTACK.pop();
+  var back = XSTACK.pop();
   if (!XSTACK.length) { var rv = XREV; XREV = []; rv.forEach(function (el) { if (el.classList.contains("xrev")) el.classList.remove("xrev"); else el.hidden = true; }); }
   paintXback(); lastManual = Date.now();
-  window.scrollTo({ top: y, behavior: "smooth" });
+  if (back && back.scrollIntoView) back.scrollIntoView({ block: "center", behavior: "smooth" });
 }
 document.addEventListener("click", function (e) {
   var a = e.target.closest ? e.target.closest("a.xref") : null;
-  if (a) { e.preventDefault(); xrefJump(a.getAttribute("data-xref")); return; }
+  if (a) { e.preventDefault(); xrefJump(a.getAttribute("data-xref"), a); return; }
   var b = e.target.closest ? e.target.closest(".xback") : null;
   if (b) { e.preventDefault(); xrefBack(); }
 });
