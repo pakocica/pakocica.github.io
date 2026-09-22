@@ -150,6 +150,15 @@ body.seconly #doc [hidden]{display:none}
 .chev{margin-left:auto}
 .chev svg{transition:transform .28s}
 .bar.min .chev svg{transform:rotate(180deg)}
+.xback{color:var(--clay);border-color:var(--clay);margin-left:auto}
+.xback+.chev{margin-left:0}
+.xback[hidden]{display:none}
+a.xref{color:var(--clay);text-decoration:none;border-bottom:1px dotted currentColor}
+a.xref:hover{border-bottom-style:solid}
+.xhit{animation:xhit 1.8s ease-out}
+@keyframes xhit{0%{box-shadow:0 0 0 4px rgba(198,97,63,.55)}100%{box-shadow:0 0 0 4px rgba(198,97,63,0)}}
+body.seconly #doc .blk.xrev{display:block}
+@media(prefers-reduced-motion:reduce){.xhit{animation:none}}
 .pos{font-size:12.5px;color:var(--soft);font-variant-numeric:tabular-nums;letter-spacing:.01em;white-space:nowrap;margin-left:4px;overflow:hidden;text-overflow:ellipsis;min-width:0}
 .sp{flex:1 1 auto}
 .lbl{font-size:13px;color:var(--soft);white-space:nowrap;cursor:default;margin-left:10px}
@@ -507,6 +516,7 @@ a.secref{color:var(--clay);text-decoration:none;border-bottom:1px solid var(--ha
     <button class="tb big" id="play" title="Play / pause (Space)" aria-label="Play"><svg id="picon" viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button>
     <button class="tb" id="next" title="Next block (&rarr;)" aria-label="Next block"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M15 5h2v14h-2zM4 5v14l10-7z"/></svg></button>
     <span class="pos" id="pos">&nbsp;</span>
+<button class="tb xback" title="Back to where you were" aria-label="Back to where you were" hidden><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 14 4 9l5-5"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 9h11a5 5 0 0 1 0 10h-4"/></svg></button>
     <button class="tb chev" id="fold" title="Hide controls" aria-label="Hide controls" aria-expanded="true"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></button>
    </div>
    <div class="r23">
@@ -531,6 +541,7 @@ a.secref{color:var(--clay);text-decoration:none;border-bottom:1px solid var(--ha
    <div class="mrow">
     <button class="tb" id="playm" title="Play / pause (Space)" aria-label="Play"><svg id="piconm" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path fill="currentColor" d="M8 5v14l11-7z"/></svg></button>
     <div class="mtxt"><span class="mt" id="mt"></span><span class="mp" id="mp">&nbsp;</span></div>
+<button class="tb xback" title="Back to where you were" aria-label="Back to where you were" hidden><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 14 4 9l5-5"/><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 9h11a5 5 0 0 1 0 10h-4"/></svg></button>
     <button class="tb chev" id="unfold" title="Show controls" aria-label="Show controls" aria-expanded="false"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg></button>
    </div>
    <div class="prog pm" id="progm" role="slider" aria-label="Chapter progress" tabindex="-1"><div class="progtrack"><div class="progfill" id="progfillm"></div></div></div>
@@ -624,6 +635,7 @@ function useVersion(v, opt) {
   document.querySelectorAll(".spk.on").forEach(function (b) { b.classList.remove("on"); });
   if (STATS && ACT) { statsTick(); statsReach(); statsSwitch(VER, v); }
   VER = v; ACT = verEl(v);
+  xrefReset();
   cueOn = false;
   loadSeq();
   moveAnchors();
@@ -903,6 +915,7 @@ function markCurrent(i) {
   if (playing) { var s = spkEl(i); if (s) s.classList.add("on"); }
 }
 function scrollTo(i) {
+  if (XSTACK.length) return;               /* away at a cross-reference: the view stays there until ↩ */
   if (Date.now() - lastManual < 2500) return;
   var el = blockEl(i); if (el) el.scrollIntoView({ block: "center", behavior: "smooth" });
 }
@@ -966,6 +979,114 @@ au.addEventListener("error", function () {
     cueOn = false; au.src = srcOf(B[cur]); au.playbackRate = parseFloat(selRate.value); doPlay(); return;
   }
   playing = false; setPlayIcon(false); markCurrent(cur);
+});
+
+/* ---------- cross-references (22 Sep, Pavel: "references like Table 17.2 or sections should be
+   clickable, and the player should have a small button to go back after a jump, even collapsed —
+   the jump just moves the view; the reader continues where it paused") ----------
+   Each edition gets its own map: "figure 17.4" / "table 17.1" from the captions, "section 17.1.2"
+   from the heading numbers (a house heading carries no number of its own and borrows the book
+   heading's through data-anchor). Mentions in the running text become a.xref; a caption never links
+   to its own figure. Runs once at boot, BEFORE any block's word spans are built, so the word
+   timings see the same text. A jump records the scroll position on XSTACK, scrolls the target into
+   view and flashes it; playback (cur, the audio, the highlight) is untouched, and while the stack
+   is non-empty the auto-scroll to the playing block is suspended. ↩ pops the stack. In the
+   section-only view a target outside the section is revealed for the visit (.xrev, its box wrappers
+   un-hidden) and hidden again when the last ↩ lands — it never joins the playable range. */
+var XSTACK = [], XREV = [];
+var XRE = /\b(Figures?|Tables?|Sections?|sections?)\s+(\d+\.\d+(?:\.\d+)?)/g;
+var XMORE = /^(\s*(?:,|and|to|or|–|-)\s*)(\d+\.\d+(?:\.\d+)?)/;   /* "Figures 17.4 and 17.5" */
+function xrefTargets(ver) {
+  var map = {}, k;
+  var caps = ver.querySelectorAll("figure.blk figcaption");
+  for (k = 0; k < caps.length; k++) {
+    var t = caps[k].textContent.replace(/\s+/g, " ").trim(), m = /^(Figure|Table)\s+(\d+\.\d+)/i.exec(t);
+    if (m) map[m[1].toLowerCase() + " " + m[2]] = caps[k].closest("figure");
+  }
+  var hs = ver.querySelectorAll("h2.blk,h3.blk");
+  for (k = 0; k < hs.length; k++) {
+    var sn = hs[k].querySelector(".snum"), num = sn ? sn.textContent.trim() : "";
+    if (!num) {
+      var a = hs[k].getAttribute("data-anchor");
+      var bh = a ? document.querySelector('#doc .ver[data-ver="book"] [data-id="' + a + '"] .snum') : null;
+      num = bh ? bh.textContent.trim() : "";
+    }
+    if (num) map["section " + num] = hs[k];
+  }
+  return map;
+}
+function xrefKind(w) { return w.toLowerCase().replace(/s$/, ""); }
+function linkRefs(ver) {
+  var map = xrefTargets(ver), nodes = [], n;
+  var walker = document.createTreeWalker(ver, NodeFilter.SHOW_TEXT, { acceptNode: function (nd) {
+    XRE.lastIndex = 0;
+    if (!nd.nodeValue || !XRE.test(nd.nodeValue)) return NodeFilter.FILTER_REJECT;
+    var p = nd.parentElement;
+    if (!p || p.closest("a,svg,.spk,.src,.pg")) return NodeFilter.FILTER_REJECT;
+    return NodeFilter.FILTER_ACCEPT; } });
+  while ((n = walker.nextNode())) nodes.push(n);
+  nodes.forEach(function (node) {
+    var str = node.nodeValue, frag = document.createDocumentFragment(), last = 0, m, own = node.parentElement.closest("figure");
+    function link(text, key) {
+      var tgt = map[key];
+      if (!tgt || tgt === own) { frag.appendChild(document.createTextNode(text)); return; }
+      var a = document.createElement("a"); a.className = "xref"; a.href = "#"; a.textContent = text; a.setAttribute("data-xref", key);
+      frag.appendChild(a);
+    }
+    XRE.lastIndex = 0;
+    while ((m = XRE.exec(str))) {
+      var kind = xrefKind(m[1]);
+      frag.appendChild(document.createTextNode(str.slice(last, m.index)));
+      link(m[0], kind + " " + m[2]); last = m.index + m[0].length;
+      var rest, mm;                                   /* "…17.4 and 17.5", "…17.1 to 17.3" */
+      while ((mm = XMORE.exec(rest = str.slice(last)))) {
+        frag.appendChild(document.createTextNode(mm[1]));
+        link(mm[2], kind + " " + mm[2]); last += mm[0].length;
+        XRE.lastIndex = last;
+      }
+    }
+    if (!last) return;
+    frag.appendChild(document.createTextNode(str.slice(last)));
+    node.parentNode.replaceChild(frag, node);
+  });
+}
+function paintXback() {
+  var bs = document.querySelectorAll(".xback"), on = XSTACK.length > 0;
+  for (var k = 0; k < bs.length; k++) bs[k].hidden = !on;
+}
+function xrefReveal(t) {
+  if (!document.body.classList.contains("seconly") || t.classList.contains("insec")) return;
+  t.classList.add("xrev"); XREV.push(t);
+  for (var w = t.parentElement; w && w.id !== "doc"; w = w.parentElement) {
+    if (w.hidden) { w.hidden = false; XREV.push(w); }
+  }
+}
+function xrefReset() {
+  XSTACK = [];
+  XREV.forEach(function (el) { if (el.classList.contains("xrev")) el.classList.remove("xrev"); else el.hidden = true; });
+  XREV = []; paintXback();
+}
+function xrefJump(key) {
+  var t = xrefTargets(ACT || document)[key]; if (!t) return;
+  xrefReveal(t);
+  XSTACK.push(window.scrollY); paintXback();
+  lastManual = Date.now();
+  t.scrollIntoView({ block: "center", behavior: "smooth" });
+  t.classList.remove("xhit"); void t.offsetWidth; t.classList.add("xhit");
+  setTimeout(function () { t.classList.remove("xhit"); }, 2000);
+}
+function xrefBack() {
+  if (!XSTACK.length) return;
+  var y = XSTACK.pop();
+  if (!XSTACK.length) { var rv = XREV; XREV = []; rv.forEach(function (el) { if (el.classList.contains("xrev")) el.classList.remove("xrev"); else el.hidden = true; }); }
+  paintXback(); lastManual = Date.now();
+  window.scrollTo({ top: y, behavior: "smooth" });
+}
+document.addEventListener("click", function (e) {
+  var a = e.target.closest ? e.target.closest("a.xref") : null;
+  if (a) { e.preventDefault(); xrefJump(a.getAttribute("data-xref")); return; }
+  var b = e.target.closest ? e.target.closest(".xback") : null;
+  if (b) { e.preventDefault(); xrefBack(); }
 });
 
 /* ---------- wiring ---------- */
@@ -1483,6 +1604,7 @@ window.addEventListener("pagehide", function () { if (pTimer) { clearTimeout(pTi
 /* ---------- boot ---------- */
 (function boot() {
   var s = load();
+  (function () { var vs = document.querySelectorAll("#doc .ver"); for (var k = 0; k < vs.length; k++) linkRefs(vs[k]); })();
   if (s.theme === "dark" || s.theme === "light") document.documentElement.setAttribute("data-theme", s.theme);
   cbCont.checked = s.continuous === true;
   var r = parseFloat(s.rate);
