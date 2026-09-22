@@ -795,21 +795,34 @@ function curTitle() {
   return best ? headText(best) : (D.title || "");
 }
 var mtCur = -2, mtVer = null, mtSec = null;
+/* BATTERY (22 Sep, Pavel: the phone warms up and drains while listening): this used to run on
+   requestAnimationFrame — 60 to 120 times a second for an hour of audio — and rewrote the bar's
+   widths, texts and aria values on EVERY frame, so the page never stopped laying out and painting.
+   Now: a 100 ms timer (finer than any word), DOM writes only when a value actually changed, and
+   the loop stops while the tab is hidden (the audio keeps playing; it restarts on return). */
+var uiW = "", uiPos = "", TICK_MS = 100;
 function updateUI() {
   var t = (cur >= 0 ? cum[cur] - cum[R0] + (cueOn ? 0 : (au.currentTime || 0)) : 0);
-  var w = (total > 0 ? Math.min(100, (t / total) * 100) : 0) + "%";
-  elFill.style.width = w; elFillM.style.width = w;
+  var w = (total > 0 ? Math.round(Math.min(100, (t / total) * 100) * 5) / 5 : 0) + "%";
+  if (w !== uiW) { uiW = w; elFill.style.width = w; elFillM.style.width = w; }
   var n = (cur >= 0 ? cur - R0 + 1 : 1) + " / " + (R1 - R0);
-  elPos.textContent = "Block " + n + " · " + fmt(t) + " / " + fmt(total);
-  elMp.textContent = n + " · " + fmt(t);
-  elProg.setAttribute("aria-valuetext", elPos.textContent);
-  elProgM.setAttribute("aria-valuetext", elPos.textContent);
+  var pos = "Block " + n + " · " + fmt(t) + " / " + fmt(total);
+  if (pos !== uiPos) {
+    uiPos = pos;
+    elPos.textContent = pos;
+    elMp.textContent = n + " · " + fmt(t);
+    elProg.setAttribute("aria-valuetext", pos);
+    elProgM.setAttribute("aria-valuetext", pos);
+  }
   if (cur !== mtCur || VER !== mtVer || SEC !== mtSec) { mtCur = cur; mtVer = VER; mtSec = SEC; elMt.textContent = curTitle(); }
 }
 function tick() {
   if (cur >= 0) { updateUI(); paintWord(cur, au.currentTime); }
-  if (playing) raf = requestAnimationFrame(tick); else raf = 0;
+  if (playing && !document.hidden) raf = setTimeout(tick, TICK_MS); else raf = 0;
 }
+document.addEventListener("visibilitychange", function () {
+  if (!document.hidden && playing && !raf) raf = setTimeout(tick, TICK_MS);
+});
 function markCurrent(i) {
   var old = document.querySelector(".reading"); if (old) old.classList.remove("reading");
   document.querySelectorAll(".spk.on").forEach(function (b) { b.classList.remove("on"); });
@@ -860,7 +873,7 @@ function step(d) {
   setCur(i, { play: playing || cur < 0 ? true : false, time: 0 });
 }
 
-au.addEventListener("play", function () { playing = true; setPlayIcon(true); markCurrent(cur); if (!raf) raf = requestAnimationFrame(tick); save(); });
+au.addEventListener("play", function () { playing = true; setPlayIcon(true); markCurrent(cur); if (!raf) raf = setTimeout(tick, TICK_MS); save(); });
 au.addEventListener("pause", function () { playing = false; setPlayIcon(false); markCurrent(cur); updateUI(); save(); });
 au.addEventListener("timeupdate", function () { if (!playing) { updateUI(); paintWord(cur, au.currentTime); } });
 au.addEventListener("loadedmetadata", function () { if (seeking !== false && seeking != null) { try { au.currentTime = seeking; } catch (e) {} seeking = false; } });
