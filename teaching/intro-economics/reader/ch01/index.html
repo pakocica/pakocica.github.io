@@ -632,7 +632,7 @@ function useVersion(v, opt) {
   progSections();
   cur = -1;
   updateUI();
-  if (opt.remember) { try { localStorage.setItem(VKEY, v); } catch (e) {} }
+  if (opt.remember) { try { localStorage.setItem(VKEY, v); } catch (e) {} try { paintDefault(); } catch (e) {} }
   if (opt.scrollHash !== false && location.hash) {
     var t = document.getElementById(location.hash.slice(1));
     if (t) { lastManual = Date.now(); t.scrollIntoView({ block: "start" }); }
@@ -641,7 +641,9 @@ function useVersion(v, opt) {
 }
 function toggleVersion() {
   if (!MULTI) return;
-  useVersion(VER === "book" ? "house" : "book", { scrollHash: false });   /* this visit only */
+  /* remembered on this device (Pavel, 22 Sep) — the same store the Contents panel's
+     "Text on opening" row writes, so the two can never disagree */
+  useVersion(VER === "book" ? "house" : "book", { scrollHash: false, remember: true });
 }
 function statsSwitch(from, to) {
   if (!STATS || from === to) return;
