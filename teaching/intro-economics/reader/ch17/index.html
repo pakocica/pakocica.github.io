@@ -185,6 +185,9 @@ select#rate:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
 .tbl{width:auto;min-width:32px;padding:0 11px;border-radius:999px;gap:7px;font-size:12.5px;color:var(--soft)}
 .tbl .tbtxt{white-space:nowrap;letter-spacing:.01em}
 .tbl[hidden],#flagbtn[hidden]{display:none}
+.revnote{display:block;margin:6px 0 16px;padding:9px 12px;border-left:3px solid #b58cf5;background:rgba(181,140,245,.09);border-radius:6px;font-size:14px;line-height:1.5;color:var(--ink)}
+.revnote b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9a6fe0;font-weight:600;margin-bottom:3px}
+body.seconly #doc .revnote{display:none}body.seconly #doc .insec + .revnote,body.seconly #doc .insec + .revnote + .revnote{display:block}
 @media(max-width:370px){.tbl{width:32px;padding:0}.tbl .tbtxt{display:none}}
 .tocwrap{position:fixed;inset:0;z-index:60;background:rgba(24,21,16,.42)}
 .tocwrap[hidden]{display:none}
@@ -1812,12 +1815,54 @@ function fromApp(ev) { var ws = appWindows(); for (var k = 0; k < ws.length; k++
 window.addEventListener("message", function (ev) {
   var d = ev.data;
   if (!d || typeof d !== "object" || !fromApp(ev)) return;
-  if (d.type === "sextant-hello") { FLAG.can = !!d.canFlag; if (btnFlag) btnFlag.hidden = !FLAG.can; return; }
+  if (d.type === "sextant-hello") { FLAG.can = !!d.canFlag; if (btnFlag) btnFlag.hidden = !FLAG.can; if (Array.isArray(d.notes)) setRevNotes(d.notes); return; }
   if (d.type === "sextant-flag-ack" && String(d.nonce) === String(FLAG.nonce)) flagDone(!!d.ok, d.reason || "");
 });
 if (appWindows().length) {
-  appPost({ type: "sextant-hello" });
-  setTimeout(function () { if (!FLAG.can) appPost({ type: "sextant-hello" }); }, 2000);
+  appPost({ type: "sextant-hello", chapter: PCH });
+  setTimeout(function () { if (!FLAG.can) appPost({ type: "sextant-hello", chapter: PCH }); }, 2000);
+}
+/* REVIEWER NOTES (24 Sep 2026, Pavel: small comments for the admin reviewing a draft - e.g. how
+   the house text differs from the book - "never leak to other users, not even in html that is
+   not displayed"). This page carries NONE: the app that opened it sends them in its hello reply,
+   and only to its admin account (they live in an admin-only Firestore doc). They are placed as
+   TEXT (never HTML) right after the block they name, inside the version they belong to, so the
+   Book | House switch shows or hides them with their text; approving the draft stops the app
+   sending them. A note on a book paragraph shown in the house text sits under that section's
+   house heading. */
+var REVNOTES = [];
+function setRevNotes(list) {
+  REVNOTES = [];
+  for (var k = 0; k < list.length && k < 60; k++) {
+    var n = list[k];
+    if (n && /^b\d{3,4}$/.test(String(n.block || "")) && (n.ver === "house" || n.ver === "book") && typeof n.text === "string" && n.text)
+      REVNOTES.push({ block: n.block, ver: n.ver, text: n.text.slice(0, 600) });
+  }
+  placeRevNotes();
+}
+function revTarget(root, id) { return root.querySelector('[data-anchor="' + id + '"]') || root.querySelector('[data-id="' + id + '"]'); }
+function placeRevNotes() {
+  var old = document.querySelectorAll("#doc .revnote");
+  for (var k = 0; k < old.length; k++) old[k].parentNode.removeChild(old[k]);
+  var doc = document.getElementById("doc");
+  REVNOTES.forEach(function (n) {
+    var root = verEl(n.ver) || (n.ver === "book" ? doc : null); if (!root) return;
+    var el = revTarget(root, n.block);
+    if (!el && n.ver === "house") {   /* a book paragraph: its section's heading in the house text */
+      var book = verEl("book") || doc, all = book.querySelectorAll("[data-id],[data-anchor]"), head = null;
+      for (var i = 0; i < all.length; i++) {
+        var e = all[i];
+        if (/^H[23]$/.test(e.tagName)) head = e.getAttribute("data-anchor") || e.getAttribute("data-id");
+        if (e.getAttribute("data-id") === n.block) break;
+      }
+      if (head) el = revTarget(root, head);
+    }
+    if (!el) return;
+    var a = document.createElement("aside"); a.className = "revnote"; a.setAttribute("role", "note");
+    var b = document.createElement("b"); b.textContent = "\u25C8 Reviewer note \u00B7 only you"; a.appendChild(b);
+    a.appendChild(document.createTextNode(n.text));
+    el.insertAdjacentElement("afterend", a);
+  });
 }
 /* the paragraph a flag points at: the one playing, else the first one in view */
 function flagTarget() {
