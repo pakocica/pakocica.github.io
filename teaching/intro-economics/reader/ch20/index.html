@@ -185,6 +185,13 @@ select#rate:focus-visible{outline:2px solid var(--clay);outline-offset:2px}
 .tbl{width:auto;min-width:32px;padding:0 11px;border-radius:999px;gap:7px;font-size:12.5px;color:var(--soft)}
 .tbl .tbtxt{white-space:nowrap;letter-spacing:.01em}
 .tbl[hidden],#flagbtn[hidden]{display:none}
+.r2sp{flex:1 1 auto;min-width:0}
+.conti{position:relative}
+.conti input{position:absolute;opacity:0;width:1px;height:1px;margin:0;pointer-events:none}
+.conti:has(input:checked){border-color:var(--clay);color:var(--clay);background:rgba(198,97,63,.1)}
+.conti:has(input:focus-visible){outline:2px solid var(--clay);outline-offset:2px}
+.setp .tocset:first-child{border-top:0;margin-top:0}
+.setp .tocset .tocnote b{font-size:12.5px;font-weight:600}
 .revnote{display:block;margin:6px 0 16px;padding:9px 12px;border-left:3px solid #b58cf5;background:rgba(181,140,245,.09);border-radius:6px;font-size:14px;line-height:1.5;color:var(--ink)}
 .revnote b{display:block;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:#9a6fe0;font-weight:600;margin-bottom:3px}
 body.seconly #doc .revnote{display:none}body.seconly #doc .insec + .revnote,body.seconly #doc .insec + .revnote + .revnote{display:block}
@@ -385,16 +392,10 @@ a.secref{color:var(--clay);text-decoration:none;border-bottom:1px solid var(--ha
     <div class="row r2">
      <div class="seg" id="seg" role="group" aria-label="Which text to show (v)" hidden><button type="button" class="segb" data-v="book" aria-pressed="true">Book</button><button type="button" class="segb" data-v="house" aria-pressed="false">House</button></div>
      <button class="tb tbl" id="tocbtn" title="Contents &mdash; jump to a chapter or section (t)" aria-label="Contents" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="currentColor" d="M3.5 5h2.6v2.4H3.5zM8.4 5.2H20v2H8.4zM3.5 10.8h2.6v2.4H3.5zM8.4 11H20v2H8.4zM3.5 16.6h2.6v2.4H3.5zM8.4 16.8H20v2H8.4z"/></svg><span class="tbtxt">Contents</span></button>
+     <label class="tb conti" id="contbtn" title="Continuous: keep playing to the end of the chapter (c)"><input type="checkbox" id="cont" aria-label="Continuous play"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 6h9M4 11h9M4 16h5M18 5v13M15 15l3 3 3-3"/></svg></label>
+     <span class="r2sp"></span>
+     <button class="tb" id="setbtn" title="Settings &mdash; reading speed, light or dark, spoken cues" aria-label="Settings" aria-haspopup="dialog" aria-expanded="false"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 7h8M17 7h3M4 17h3M12 17h8"/><circle cx="14.5" cy="7" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9.5" cy="17" r="2.3" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
      <button class="tb" id="flagbtn" title="Report a problem in the text to the lecturer" aria-label="Report a problem" aria-haspopup="dialog" aria-expanded="false" hidden><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 21V4M5 4h13l-2.5 4L18 12H5"/></svg></button>
-     <select id="rate" title="Playback speed ([ / ])" aria-label="Playback speed">
-      <option value="0.75">0.75&times;</option><option value="1" selected>1&times;</option><option value="1.25">1.25&times;</option><option value="1.5">1.5&times;</option><option value="2">2&times;</option>
-     </select>
-     <button class="tb" id="theme" title="Light / dark" aria-label="Toggle light or dark theme"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9z"/></svg></button>
-    </div>
-    <div class="row r3">
-     <label class="cont" title="Keep playing to the end of the chapter (c)"><input type="checkbox" id="cont"> Continuous</label>
-     <span class="lbl" id="cuelbl" title="A short spoken heading &mdash; &ldquo;Section 17.1&rdquo;, &ldquo;In the world&rdquo; &mdash; in front of a block. Auto plays it only while the page is hidden.">Cues</span>
-     <div class="seg cseg" role="group" aria-labelledby="cuelbl"><button type="button" class="segb" data-cm="auto" aria-pressed="true">Auto</button><button type="button" class="segb" data-cm="always" aria-pressed="false">Always</button><button type="button" class="segb" data-cm="never" aria-pressed="false">Never</button></div>
     </div>
    </div>
   </div>
@@ -420,6 +421,27 @@ a.secref{color:var(--clay);text-decoration:none;border-bottom:1px solid var(--ha
   <button class="tb" id="tocx" title="Close (Esc)" aria-label="Close contents"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg></button>
  </div>
  <div class="tocb" id="tocbody"></div>
+</div>
+<div class="tocwrap" id="setwrap" hidden></div>
+<div class="tocp setp" id="setp" role="dialog" aria-modal="true" aria-labelledby="settitle" tabindex="-1" hidden>
+ <div class="toch">
+  <b id="settitle">Settings</b>
+  <span class="sp"></span>
+  <button class="tb" id="setx" title="Close (Esc)" aria-label="Close settings"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M6 6l12 12M18 6L6 18"/></svg></button>
+ </div>
+ <div class="tocb" id="setb">
+  <div class="tocset"><b>Reading speed</b>
+     <select id="rate" title="Playback speed ([ / ])" aria-label="Playback speed">
+      <option value="0.75">0.75&times;</option><option value="1" selected>1&times;</option><option value="1.25">1.25&times;</option><option value="1.5">1.5&times;</option><option value="2">2&times;</option>
+     </select>
+   <span class="tocnote">How fast the voice reads. On a keyboard, [ and ] step it down and up.</span></div>
+  <div class="tocset"><b>Light or dark</b>
+   <div class="seg" id="tseg" role="group" aria-label="Light or dark"><button type="button" class="segb" data-th="" aria-pressed="true">Device</button><button type="button" class="segb" data-th="light" aria-pressed="false">Light</button><button type="button" class="segb" data-th="dark" aria-pressed="false">Dark</button></div>
+   <span class="tocnote">&ldquo;Device&rdquo; follows your phone&rsquo;s or computer&rsquo;s own setting.</span></div>
+  <div class="tocset"><b id="cuelbl">Spoken cues</b>
+   <div class="seg cseg" id="cseg" role="group" aria-labelledby="cuelbl"><button type="button" class="segb" data-cm="auto" aria-pressed="true">Auto</button><button type="button" class="segb" data-cm="always" aria-pressed="false">Always</button><button type="button" class="segb" data-cm="never" aria-pressed="false">Never</button></div>
+   <span class="tocnote">A cue is a short spoken heading &mdash; &ldquo;Section 17.1&rdquo;, &ldquo;In the world&rdquo; &mdash; read before a block, so that you know where you are when you are only listening. <b>Auto</b> plays cues only while the page is out of sight (the screen is off or you are in another app); <b>Always</b> plays them every time; <b>Never</b> turns them off.</span></div>
+ </div>
 </div>
 <div class="tocwrap" id="flagwrap" hidden></div>
 <div class="tocp flagp" id="flagp" role="dialog" aria-modal="true" aria-labelledby="flagtitle" tabindex="-1" hidden>
@@ -545,7 +567,7 @@ function setDefaultVersion(v) {
   paintDefault();
 }
 function paintDefault() {
-  var dv = defaultVersion(), bs = document.querySelectorAll("#tocbody .dseg .segb");
+  var dv = defaultVersion(), bs = document.querySelectorAll(".dseg .segb");
   for (var k = 0; k < bs.length; k++) bs[k].setAttribute("aria-pressed", bs[k].getAttribute("data-dv") === dv ? "true" : "false");
 }
 
@@ -573,11 +595,11 @@ function cuesWanted() {
   return document.visibilityState === "hidden";
 }
 function paintCues() {
-  var m = readCues(), bs = document.querySelectorAll("#bar .cseg .segb");
+  var m = readCues(), bs = document.querySelectorAll("#cseg .segb");
   for (var k = 0; k < bs.length; k++) bs[k].setAttribute("aria-pressed", bs[k].getAttribute("data-cm") === m ? "true" : "false");
 }
 
-document.querySelector("#bar .cseg").addEventListener("click", function (e) {
+document.getElementById("cseg").addEventListener("click", function (e) {
   var b = e.target.closest ? e.target.closest(".segb") : null;
   if (b) setCues(b.getAttribute("data-cm"));
 });
@@ -603,7 +625,7 @@ function save(extra) {
 /* ---------- elements ---------- */
 var cbCont = document.getElementById("cont"), selRate = document.getElementById("rate");
 var btnPlay = document.getElementById("play"), btnPrev = document.getElementById("prev"), btnNext = document.getElementById("next");
-var btnTheme = document.getElementById("theme"), elPos = document.getElementById("pos");
+var tSeg = document.getElementById("tseg"), elPos = document.getElementById("pos");
 var elProg = document.getElementById("prog"), elFill = document.getElementById("progfill");
 var elProgM = document.getElementById("progm"), elFillM = document.getElementById("progfillm");
 var elResume = document.getElementById("resume"), picon = document.getElementById("picon");
@@ -988,11 +1010,16 @@ btnPrev.addEventListener("click", function () { step(-1); });
 btnNext.addEventListener("click", function () { step(1); });
 selRate.addEventListener("change", function () { au.playbackRate = parseFloat(selRate.value); save(); });
 cbCont.addEventListener("change", save);
-btnTheme.addEventListener("click", function () {
-  var r = document.documentElement, now = r.getAttribute("data-theme");
-  var sysDark = window.matchMedia && window.matchMedia("(prefers-color-scheme:dark)").matches;
-  var next = now ? (now === "dark" ? "light" : "dark") : (sysDark ? "light" : "dark");
-  r.setAttribute("data-theme", next); save({ theme: next });
+/* light or dark lives in Settings (24 Sep 2026): Device (follow the system) | Light | Dark */
+function paintThemeSeg() {
+  var v = document.documentElement.getAttribute("data-theme") || "", bs = tSeg.querySelectorAll(".segb");
+  for (var k = 0; k < bs.length; k++) bs[k].setAttribute("aria-pressed", bs[k].getAttribute("data-th") === v ? "true" : "false");
+}
+tSeg.addEventListener("click", function (e) {
+  var b = e.target.closest ? e.target.closest(".segb") : null; if (!b) return;
+  var v = b.getAttribute("data-th"), r = document.documentElement;
+  if (v) r.setAttribute("data-theme", v); else r.removeAttribute("data-theme");
+  save({ theme: v }); paintThemeSeg();
 });
 function seekOn(el) {
   el.addEventListener("click", function (e) {
@@ -1037,6 +1064,10 @@ function toggleFold(e) {
 window.addEventListener("wheel", function () { lastManual = Date.now(); }, { passive: true });
 window.addEventListener("touchmove", function () { lastManual = Date.now(); }, { passive: true });
 document.addEventListener("keydown", function (e) {
+  if (SETP.open) {
+    if (e.key === "Escape" || e.key === "Esc") { e.preventDefault(); closeSet(); }
+    return;
+  }
   if (tocOpen) {
     if (e.key === "Escape" || e.key === "Esc") { e.preventDefault(); closeToc(); }
     return;                                  /* Tab/Enter/Space keep working on the panel's own buttons */
@@ -1293,10 +1324,11 @@ function buildToc() {
   elTocB.appendChild(paneBook);
   if (paneCourse) elTocB.appendChild(paneCourse);
   if (OUT) { setTocMode(readMode()); }
-  var cset = mk("div", "tocset");
-  cset.appendChild(mk("b", null, "Spoken cues"));
-  cset.appendChild(mk("span", "tocnote", "Set in the player (Cues \u00b7 Auto | Always | Never, on its last line): a short spoken heading \u2014 \u201cSection 17.1\u201d, \u201cIn the world\u201d \u2014 in front of a block. Auto plays it only while the page is hidden (screen off, another app in front), where you cannot see where the reading is."));
-  elTocB.appendChild(cset);
+  buildVerSetting();
+}
+/* "Text on opening" — a setting, so it lives in the Settings panel (24 Sep 2026) */
+function buildVerSetting() {
+  if (SETP.verBuilt) return; SETP.verBuilt = true;
   if (MULTI) {
     var lab = D.labels || {}, set = mk("div", "tocset"), seg = mk("div", "seg dseg");
     seg.setAttribute("role", "group"); seg.setAttribute("aria-label", "Which text opens by default");
@@ -1309,7 +1341,7 @@ function buildToc() {
     set.appendChild(mk("b", null, "Text on opening"));
     set.appendChild(seg);
     set.appendChild(mk("span", "tocnote", "Remembered on this device. The switch in the bar changes the text for this visit only."));
-    elTocB.appendChild(set);
+    document.getElementById("setb").appendChild(set);
     paintDefault();
   }
 }
@@ -1533,6 +1565,34 @@ if (appWindows().length) {
   appPost({ type: "sextant-hello", chapter: PCH });
   setTimeout(function () { if (!FLAG.can) appPost({ type: "sextant-hello", chapter: PCH }); }, 2000);
 }
+/* SETTINGS (24 Sep 2026, Pavel: "move Cues (with more clarification), dark/light, reader speed to
+   settings so the full reader has just two lines"): a panel shaped like Contents and Flag */
+var SETP = { open: false, back: null, verBuilt: false };
+var btnSet = document.getElementById("setbtn"), elSetWrap = document.getElementById("setwrap"), elSetP = document.getElementById("setp");
+function openSet() {
+  if (SETP.open || !elSetP) return;
+  if (tocOpen) closeToc();
+  if (FLAG.open) closeFlag();
+  buildVerSetting(); if (typeof paintDefault === "function" && MULTI) paintDefault();
+  paintCues(); paintThemeSeg();
+  var back = document.activeElement;
+  SETP.back = (back && back !== document.body && back !== document.documentElement) ? back : btnSet;
+  elSetWrap.hidden = false; elSetP.hidden = false; SETP.open = true;
+  btnSet.setAttribute("aria-expanded", "true");
+  document.documentElement.style.overflow = "hidden"; document.body.style.overflow = "hidden";
+  try { elSetP.focus(); } catch (e) {}
+}
+function closeSet() {
+  if (!SETP.open) return;
+  elSetWrap.hidden = true; elSetP.hidden = true; SETP.open = false;
+  btnSet.setAttribute("aria-expanded", "false");
+  document.documentElement.style.overflow = ""; document.body.style.overflow = "";
+  try { if (SETP.back && SETP.back.focus) SETP.back.focus(); } catch (e) {}
+  SETP.back = null;
+}
+if (btnSet) btnSet.addEventListener("click", openSet);
+document.getElementById("setx").addEventListener("click", closeSet);
+elSetWrap.addEventListener("click", closeSet);
 /* REVIEWER NOTES (24 Sep 2026, Pavel: small comments for the admin reviewing a draft - e.g. how
    the house text differs from the book - "never leak to other users, not even in html that is
    not displayed"). This page carries NONE: the app that opened it sends them in its hello reply,
@@ -1687,6 +1747,7 @@ window.addEventListener("pagehide", function () { if (pTimer) { clearTimeout(pTi
   var s = load();
   (function () { var vs = document.querySelectorAll("#doc .ver"); for (var k = 0; k < vs.length; k++) linkRefs(vs[k]); })();
   if (s.theme === "dark" || s.theme === "light") document.documentElement.setAttribute("data-theme", s.theme);
+  paintThemeSeg();
   cbCont.checked = s.continuous === true;
   var r = parseFloat(s.rate);
   if (r && [0.75, 1, 1.25, 1.5, 2].indexOf(r) >= 0) { selRate.value = String(r); }
