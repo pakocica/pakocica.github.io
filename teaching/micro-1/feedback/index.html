@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex">
+  <title>Micro I, Part I: quick feedback</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@700&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+:root{--blue:#0057B7;--blue-dark:#004494;--yellow:#FFD700;--cream:#FFF3CC;--text:#000;--muted:#333;--err:#9b0000}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:18px;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--cream);color:var(--text);line-height:1.5;min-height:100vh;overflow-wrap:break-word}
+.top{background:var(--blue-dark);color:#fff;border-bottom:6px solid var(--yellow);padding:1.5rem 1rem 1.4rem}
+.wrap{max-width:32rem;margin:0 auto}
+.brand{font-size:.8rem;font-weight:500;letter-spacing:.04em;color:rgba(255,255,255,.85);margin-bottom:.35rem}
+h1{font-family:'EB Garamond',Georgia,'Times New Roman',serif;font-weight:700;font-size:clamp(1.75rem,7.5vw,2.5rem);line-height:1.15;color:#fff;text-wrap:balance}
+main{padding:1.5rem 1rem 3rem}
+.anon{font-size:1.06rem;color:var(--muted);margin-bottom:1.5rem}
+label{display:block;font-weight:700;font-size:1.12rem;margin-bottom:.45rem}
+input{display:block;width:100%;font-family:inherit;font-size:1.6rem;line-height:1.25;padding:.55em .65em;border:2px solid var(--blue);border-radius:8px;background:#fff;color:#000;-webkit-appearance:none;appearance:none}
+input:focus{outline:3px solid var(--yellow);outline-offset:1px;border-color:var(--blue-dark)}
+button{display:block;width:100%;margin-top:1rem;font-family:inherit;font-size:1.35rem;font-weight:700;line-height:1.3;padding:.75em 1em;border:0;border-radius:8px;background:var(--yellow);color:#000;box-shadow:0 2px 8px rgba(0,0,0,.2);cursor:pointer;touch-action:manipulation}
+button:hover,button:focus-visible{text-decoration:underline}
+button:disabled{opacity:.65;cursor:progress;text-decoration:none}
+.msg{margin-top:1rem;min-height:1.5em;font-size:1.06rem;font-weight:500}
+.msg.err{color:var(--err)}
+[hidden]{display:none!important}
+@media (min-width:600px){button{display:inline-block;width:auto;padding:.7em 2.4em}}
+  </style>
+</head>
+<body>
+  <header class="top">
+    <div class="wrap">
+      <p class="brand">Pavel Kocourek &middot; Microeconomics I &middot; Universitat de Barcelona</p>
+      <h1>Micro I, Part I: quick feedback</h1>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <p class="anon">Anonymous: no name, no student ID, no effect on your grade.</p>
+      <form id="gate" autocomplete="off" hidden>
+        <label for="word">Word on the board</label>
+        <input id="word" name="word" type="text" autofocus autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" enterkeyhint="go">
+        <button id="go" type="submit">Continue</button>
+      </form>
+      <p class="msg err" id="msg" role="alert" aria-live="assertive"><noscript>Please open this page in a current browser (Safari or Chrome).</noscript></p>
+    </div>
+  </main>
+  <script>
+(function () {
+  "use strict";
+  var P = {"iter":300000,"salt":"8VTNDWRYDV9hjU3+rUgwzA==","iv":"IWpeJAPYZFQ91C/P","ct":"+DY34QPK13KubVaU/NKCliSE9I3X4+XsL+eVgPu4ekyNPmIU6y++2q2leT8gGg2w/HeSBG7ra+T3Tg=="};
+  var form = document.getElementById("gate"), input = document.getElementById("word"),
+      btn = document.getElementById("go"), msg = document.getElementById("msg");
+  var WRONG = "That is not the word on the board. Check the spelling and try again.";
+  function say(t, err) { msg.textContent = t; msg.className = err ? "msg err" : "msg"; }
+  var c = window.crypto, subtle = c && c.subtle;
+  if (!subtle || !window.TextEncoder || !window.TextDecoder || !window.Promise || !window.atob || !String.prototype.normalize) {
+    say("Please open this page in a current browser (Safari or Chrome).", true);
+    return;
+  }
+  say("", false);
+  form.hidden = false;
+  try { input.focus(); } catch (e) {}
+  function norm(w) { return String(w).trim().toLowerCase().normalize("NFC"); }
+  function bytes(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+  function unlock(word) {
+    return subtle.importKey("raw", new TextEncoder().encode(norm(word)), "PBKDF2", false, ["deriveKey"])
+      .then(function (k) {
+        return subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt: bytes(P.salt), iterations: P.iter }, k,
+                                { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+      })
+      .then(function (key) { return subtle.decrypt({ name: "AES-GCM", iv: bytes(P.iv) }, key, bytes(P.ct)); })
+      .then(function (buf) {
+        var url = new TextDecoder().decode(buf);
+        if (!/^https:\/\/[^\s]+$/.test(url)) throw new Error("not a link");
+        return url;
+      });
+  }
+  var busy = false;
+  function wrong() {
+    busy = false; btn.disabled = false;
+    say(WRONG, true);
+    try { input.focus(); input.select(); } catch (e) {}
+  }
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (busy) return;
+    if (!norm(input.value)) { wrong(); return; }
+    busy = true; btn.disabled = true;
+    say("Checking\u2026", false);
+    unlock(input.value).then(function (url) {
+      say("Opening the form\u2026", false);
+      location.replace(url);
+    }, wrong);
+  });
+})();
+  </script>
+</body>
+</html>
