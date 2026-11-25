@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pavel Kocourek — Page not found</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;700&family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-KQW8T08LE2"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KQW8T08LE2');</script>
+</head>
+<body class="page-document">
+
+  <header class="site-header">
+    <nav class="nav-inner" aria-label="Main navigation">
+      <a href="/" class="nav-brand">Pavel Kocourek</a>
+      <button type="button" class="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/cv/">CV</a></li>
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/teaching/">Teaching</a></li>
+        <li><a href="/personal/">Personal</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+  <div class="page-banner">
+    <h1>Page not found</h1>
+  </div>
+
+  <div class="section section-blue">
+    <div class="section-inner">
+      <p>There is no page at this address. It may have moved. Try one of these:</p>
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/cv/">CV</a></li>
+        <li><a href="/research/">Research</a></li>
+        <li><a href="/teaching/">Teaching</a></li>
+        <li><a href="/personal/">Personal</a></li>
+        <li><a href="/contact/">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-links">
+        <a href="https://orcid.org/0009-0009-7018-1883" target="_blank" rel="noopener">ORCID</a>
+        <a href="https://scholar.google.com/citations?user=PKP-uQcAAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://www.linkedin.com/in/p-kocourek/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      <span>Last updated: November 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll',()=>document.querySelector('.site-header').classList.toggle('scrolled',window.scrollY>10));
+    (function(){
+      var nav=document.querySelector('.nav-inner'),btn=nav.querySelector('.hamburger');
+      function setMenu(open){nav.classList.toggle('nav-open',open);btn.setAttribute('aria-expanded',open?'true':'false');}
+      btn.addEventListener('click',function(){setMenu(!nav.classList.contains('nav-open'));});
+      document.addEventListener('keydown',function(e){
+        if(e.key==='Escape'&&nav.classList.contains('nav-open')){var inside=nav.contains(document.activeElement);setMenu(false);if(inside)btn.focus();}
+      });
+    })();
+  </script>
+</body>
+</html>
